@@ -216,7 +216,7 @@ API'den post'ları getirmek için `_fetchPosts` çağrısı yapacağız.
 
 `PostBloc`'umuz, olay işleyicisinde sağlanan `Emitter<PostState>` üzerinden yeni
 durumlar `emit` edecek (yayacak). Daha fazla bilgi için
-[temel kavramlar](/tr/bloc-concepts#streams) bölümüne göz atabilirsiniz.
+[temel kavramlar](/tr/bloc-concepts/#streamler) bölümüne göz atabilirsiniz.
 
 Artık her `PostEvent` eklendiğinde, eğer bu bir `PostFetched` olayıysa ve
 getirilecek daha fazla post varsa, `PostBloc`'umuz sonraki 20 post'u
