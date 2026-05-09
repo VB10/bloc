@@ -9,12 +9,11 @@ import StateExamplesGood1Snippet from '~/components/naming-conventions/StateExam
 import SingleStateExamplesGood1Snippet from '~/components/naming-conventions/SingleStateExamplesGood1Snippet.astro';
 import StateExamplesBad1Snippet from '~/components/naming-conventions/StateExamplesBad1Snippet.astro';
 
-Aşağıdaki adlandırma kuralları yalnızca önerilerden ibarettir ve tamamen
-isteğe bağlıdır. Tercih ettiğiniz herhangi bir adlandırma kuralını
-kullanmaktan çekinmeyin. Bazı örneklerin/dokümantasyonun, çoğunlukla
-basitlik/özlük amacıyla bu adlandırma kurallarını takip etmediğini
-görebilirsiniz. Bu kurallar, birden fazla geliştiricinin yer aldığı büyük
-projeler için şiddetle önerilir.
+Aşağıdaki adlandırma kuralları yalnızca önerilerden ibarettir ve tamamen isteğe
+bağlıdır. Tercih ettiğiniz herhangi bir adlandırma kuralını kullanmaktan
+çekinmeyin. Bazı örneklerin/dokümantasyonun, çoğunlukla basitlik/özlük amacıyla
+bu adlandırma kurallarını takip etmediğini görebilirsiniz. Bu kurallar, birden
+fazla geliştiricinin yer aldığı büyük projeler için şiddetle önerilir.
 
 ## Olay Kuralları
 
@@ -45,9 +44,9 @@ Temel olay sınıfı şu şekilde adlandırılmalıdır: `BlocSubject` + `Event`
 
 ## Durum Kuralları
 
-Durumlar isim olmalıdır çünkü bir durum, belirli bir zaman dilimindeki
-anlık görüntüden başka bir şey değildir. Durumu temsil etmenin iki yaygın
-yolu vardır: alt sınıflar kullanmak veya tek bir sınıf kullanmak.
+Durumlar isim olmalıdır çünkü bir durum, belirli bir zaman dilimindeki anlık
+görüntüden başka bir şey değildir. Durumu temsil etmenin iki yaygın yolu vardır:
+alt sınıflar kullanmak veya tek bir sınıf kullanmak.
 
 ### Yapı
 
@@ -55,8 +54,8 @@ yolu vardır: alt sınıflar kullanmak veya tek bir sınıf kullanmak.
 
 `BlocSubject` + `Fiil (eylem)` + `State`
 
-Durumu birden fazla alt sınıf olarak temsil ederken `State` aşağıdakilerden
-biri olmalıdır:
+Durumu birden fazla alt sınıf olarak temsil ederken `State` aşağıdakilerden biri
+olmalıdır:
 
 `Initial` | `Success` | `Failure` | `InProgress`
 
@@ -70,8 +69,8 @@ biri olmalıdır:
 
 `BlocSubject` + `State`
 
-Durumu tek bir temel sınıf olarak temsil ederken, durumun statüsünü temsil
-etmek için `BlocSubject` + `Status` adında bir enum kullanılmalıdır:
+Durumu tek bir temel sınıf olarak temsil ederken, durumun statüsünü temsil etmek
+için `BlocSubject` + `Status` adında bir enum kullanılmalıdır:
 
 `initial` | `success` | `failure` | `loading`.
 

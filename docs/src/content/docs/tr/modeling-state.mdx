@@ -1,7 +1,8 @@
 ---
 title: Durum Modelleme
 description:
-  package:bloc kullanırken durumları modellemenin çeşitli yollarına genel bir bakış.
+  package:bloc kullanırken durumları modellemenin çeşitli yollarına genel bir
+  bakış.
 ---
 
 import ConcreteClassAndStatusEnumSnippet from '~/components/modeling-state/ConcreteClassAndStatusEnumSnippet.astro';
@@ -47,8 +48,7 @@ ve/veya çok sayıda paylaşılan özellik içeren durumlar için en iyi şekild
 
 - **Basit**: Tek bir sınıfı ve bir durum enum'unu yönetmek kolaydır ve tüm
   özelliklere kolayca erişilebilir.
-- **Özlü**: Diğer yaklaşımlara kıyasla genellikle daha az satır kod
-  gerektirir.
+- **Özlü**: Diğer yaklaşımlara kıyasla genellikle daha az satır kod gerektirir.
 
 #### Eksileri
 
@@ -63,11 +63,10 @@ ve/veya çok sayıda paylaşılan özellik içeren durumlar için en iyi şekild
 
 #### Karar
 
-Bu yaklaşım, basit durumlar veya gereksinimlerin birbirini dışlamayan
-durumları gerektirdiği yerlerde (örneğin, son başarı durumundan eski verileri
-göstermeye devam ederken bir hata oluştuğunda snackbar göstermek) en iyi
-şekilde çalışır. Bu yaklaşım, tip güvenliği pahasına esneklik ve özlülük
-sağlar.
+Bu yaklaşım, basit durumlar veya gereksinimlerin birbirini dışlamayan durumları
+gerektirdiği yerlerde (örneğin, son başarı durumundan eski verileri göstermeye
+devam ederken bir hata oluştuğunda snackbar göstermek) en iyi şekilde çalışır.
+Bu yaklaşım, tip güvenliği pahasına esneklik ve özlülük sağlar.
 
 ## Sealed Sınıf ve Alt Sınıflar
 
@@ -79,18 +78,17 @@ dışlayan durumlar için harikadır.
 
 #### Artıları
 
-- **Tip Güvenli**: Kod derleme zamanında güvenlidir ve yanlışlıkla geçersiz
-  bir özelliğe erişmek mümkün değildir. Her alt sınıf kendi özelliklerini
-  tutar, bu da hangi özelliklerin hangi duruma ait olduğunu netleştirir.
+- **Tip Güvenli**: Kod derleme zamanında güvenlidir ve yanlışlıkla geçersiz bir
+  özelliğe erişmek mümkün değildir. Her alt sınıf kendi özelliklerini tutar, bu
+  da hangi özelliklerin hangi duruma ait olduğunu netleştirir.
 - **Açık:** Paylaşılan özellikleri duruma özgü özelliklerden ayırır.
 - **Kapsayıcı (Exhaustive)**: Her durumun açıkça ele alındığından emin olmak
   için kapsama (exhaustiveness) kontrollü bir `switch` ifadesi kullanmak.
   - Eğer
     [exhaustive switching](https://dart.dev/language/branches#exhaustiveness-checking)
     istemiyorsanız veya API'yi bozmadan daha sonra alt türler ekleyebilmek
-    istiyorsanız,
-    [final](https://dart.dev/language/class-modifiers#final) modifikatörünü
-    kullanın.
+    istiyorsanız, [final](https://dart.dev/language/class-modifiers#final)
+    modifikatörünü kullanın.
   - Daha fazla ayrıntı için
     [sealed sınıf dokümantasyonuna](https://dart.dev/language/class-modifiers#sealed)
     bakın.
@@ -98,12 +96,12 @@ dışlayan durumlar için harikadır.
 #### Eksileri
 
 - **Ayrıntılı**: Daha fazla kod gerektirir (bir temel sınıf ve durum başına bir
-  alt sınıf). Ayrıca, alt sınıflar arasında paylaşılan özellikler için
-  yinelenen kod gerektirebilir.
+  alt sınıf). Ayrıca, alt sınıflar arasında paylaşılan özellikler için yinelenen
+  kod gerektirebilir.
 - **Karmaşık**: Yeni özellikler eklemek, her alt sınıfın ve temel sınıfın
   güncellenmesini gerektirir; bu zahmetli olabilir ve durumun karmaşıklığında
-  artışlara yol açabilir. Ek olarak, özelliklere erişmek için
-  gereksiz/aşırı tip kontrolü gerektirebilir.
+  artışlara yol açabilir. Ek olarak, özelliklere erişmek için gereksiz/aşırı tip
+  kontrolü gerektirebilir.
 
 #### Karar
 

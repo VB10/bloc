@@ -1,6 +1,8 @@
 ---
 title: Flutter Hava Durumu
-description: Bloc ile Flutter hava durumu uygulaması oluşturmaya yönelik kapsamlı bir rehber.
+description:
+  Bloc ile Flutter hava durumu uygulaması oluşturmaya yönelik kapsamlı bir
+  rehber.
 sidebar:
   order: 5
 ---
@@ -57,18 +59,21 @@ Ayrıca:
 
 ## Önemli Kavramlar
 
-- [BlocObserver](/tr/bloc-concepts#blocobserver) ile durum değişikliklerini gözlemleme.
+- [BlocObserver](/tr/bloc-concepts#blocobserver) ile durum değişikliklerini
+  gözlemleme.
 - Çocuklarına bir bloc sağlayan Flutter widget'ı olan
   [BlocProvider](/tr/flutter-bloc-concepts#blocprovider).
 - Yeni durumlara yanıt olarak widget oluşturmayı yöneten Flutter widget'ı olan
   [BlocBuilder](/tr/flutter-bloc-concepts#blocbuilder).
-- [Equatable](/tr/faqs#when-to-use-equatable) ile gereksiz yeniden oluşturmaları önleme.
+- [Equatable](/tr/faqs#when-to-use-equatable) ile gereksiz yeniden oluşturmaları
+  önleme.
 - Çocuklarına bir repository sağlayan Flutter widget'ı olan
   [RepositoryProvider](/tr/flutter-bloc-concepts#repositoryprovider).
-- Bloc'taki durum değişikliklerine yanıt olarak dinleyici kodunu çağıran
-  Flutter widget'ı olan [BlocListener](/tr/flutter-bloc-concepts#bloclistener).
+- Bloc'taki durum değişikliklerine yanıt olarak dinleyici kodunu çağıran Flutter
+  widget'ı olan [BlocListener](/tr/flutter-bloc-concepts#bloclistener).
 - Birden fazla BlocProvider widget'ını tek bir widget'ta birleştiren Flutter
-  widget'ı olan [MultiBlocProvider](/tr/flutter-bloc-concepts#multiblocprovider).
+  widget'ı olan
+  [MultiBlocProvider](/tr/flutter-bloc-concepts#multiblocprovider).
 - Yeni durumlara tepki vermek için bir builder ve listener sunan Flutter
   widget'ı olan [BlocConsumer](/tr/flutter-bloc-concepts#blocconsumer).
 - Durumu yönetmek ve kalıcı hale getirmek için
@@ -83,11 +88,11 @@ Başlamak için yeni bir flutter projesi oluşturun.
 ### Proje Yapısı
 
 Uygulamamız, ilgili dizinlerdeki izole özelliklerden oluşacaktır. Bu, özellik
-sayısı arttıkça ölçeklenmemize olanak tanır ve geliştiricilerin farklı özellikler
-üzerinde paralel olarak çalışabilmesini sağlar.
+sayısı arttıkça ölçeklenmemize olanak tanır ve geliştiricilerin farklı
+özellikler üzerinde paralel olarak çalışabilmesini sağlar.
 
-Uygulamamız dört ana özelliğe ayrılabilir: **search, settings, theme,
-weather**. Bu dizinleri oluşturalım.
+Uygulamamız dört ana özelliğe ayrılabilir: **search, settings, theme, weather**.
+Bu dizinleri oluşturalım.
 
 <FeatureTreeSnippet />
 
@@ -99,8 +104,8 @@ katmanlardan oluşacak.
 Bu eğitimde, bu katmanların yapacakları şunlar olacak:
 
 - **Veri (Data)**: API'den ham hava durumu verilerini alır
-- **Repository**: veri katmanını soyutlar ve uygulamanın tüketmesi için
-  domain modellerini sunar
+- **Repository**: veri katmanını soyutlar ve uygulamanın tüketmesi için domain
+  modellerini sunar
 - **İş Mantığı (Business Logic)**: her özelliğin durumunu yönetir (birim
   bilgisi, şehir detayları, temalar vb.)
 - **Sunum (Presentation)**: hava durumu bilgilerini gösterir ve kullanıcılardan
@@ -130,8 +135,8 @@ hava durumu yanıtını göreceksiniz.
 
 ### OpenMeteo API İstemcisi
 
-OpenMeteo API İstemcisi uygulamamızdan bağımsızdır. Sonuç olarak, onu dahili
-bir paket olarak oluşturacağız (ve hatta [pub.dev](https://pub.dev) üzerinde
+OpenMeteo API İstemcisi uygulamamızdan bağımsızdır. Sonuç olarak, onu dahili bir
+paket olarak oluşturacağız (ve hatta [pub.dev](https://pub.dev) üzerinde
 yayınlayabiliriz). Daha sonra paketi, ana hava durumu uygulamamızın veri
 isteklerini işleyecek olan repository katmanının `pubspec.yaml`'ına ekleyerek
 kullanabiliriz.
@@ -146,8 +151,8 @@ oluşturmak amacıyla yerleşik `flutter create` komutunu çalıştırın.
 
 ### Hava Durumu Veri Modeli
 
-Sırada, `location` ve `weather` API uç noktası yanıtları için modelleri
-içerecek `location.dart` ve `weather.dart` dosyalarını oluşturalım.
+Sırada, `location` ve `weather` API uç noktası yanıtları için modelleri içerecek
+`location.dart` ve `weather.dart` dosyalarını oluşturalım.
 
 <OpenMeteoModelsTreeSnippet />
 
@@ -202,7 +207,8 @@ ekleyeceğiz.
 
 Ayrıca, bir API'den veri getirmek için
 [HTTP ağ istekleri yapmanın](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
-bir yoluna ihtiyacımız var. Neyse ki, tam da bunu yapan birçok popüler paket var.
+bir yoluna ihtiyacımız var. Neyse ki, tam da bunu yapan birçok popüler paket
+var.
 
 `toJson` ve `fromJson` uygulamalarını bizim için üretmek üzere
 [json_annotation](https://pub.dev/packages/json_annotation),
@@ -289,8 +295,8 @@ oluşturalım. Proje yapımız şimdi şu şekilde görünmelidir:
 
 <OpenMeteoApiClientTreeSnippet />
 
-Hava durumu API'sine HTTP istekleri yapmak ve bu bilgiyi uygulamamızda
-kullanmak için daha önce `pubspec.yaml` dosyasına eklediğimiz
+Hava durumu API'sine HTTP istekleri yapmak ve bu bilgiyi uygulamamızda kullanmak
+için daha önce `pubspec.yaml` dosyasına eklediğimiz
 [http](https://pub.dev/packages/http) paketini kullanabiliriz.
 
 API istemcimiz iki metot sunacak:
@@ -366,10 +372,9 @@ API çağrısını da doğru şekilde işlediğinden emin olmak için test etmel
 
 Amacımız, API'nin kendisini değil API istemcisi mantığını (tüm uç durumlar
 dahil) test etmek olduğundan, testlerimizin gerçek API çağrıları yapmasını
-istemiyoruz. Tutarlı, kontrollü bir test ortamı sağlamak için `http`
-istemcisini mocklamak amacıyla
-[mocktail](https://github.com/felangel/mocktail) kullanacağız (daha önce
-pubspec.yaml dosyasına ekledik).
+istemiyoruz. Tutarlı, kontrollü bir test ortamı sağlamak için `http` istemcisini
+mocklamak amacıyla [mocktail](https://github.com/felangel/mocktail) kullanacağız
+(daha önce pubspec.yaml dosyasına ekledik).
 
 :::
 
@@ -408,8 +413,8 @@ aynı paketleri kullanacağız. `pubspec.yaml`'ınızı güncelleyin ve
 
 :::note
 
-`open_meteo_api`'nin konumunu belirtmek için bir `path` kullanıyoruz; bu da
-onu tıpkı `pub.dev`'den gelen harici bir paket gibi ele almamıza olanak tanır.
+`open_meteo_api`'nin konumunu belirtmek için bir `path` kullanıyoruz; bu da onu
+tıpkı `pub.dev`'den gelen harici bir paket gibi ele almamıza olanak tanır.
 
 :::
 
@@ -421,16 +426,16 @@ onu tıpkı `pub.dev`'den gelen harici bir paket gibi ele almamıza olanak tanı
 ### Hava Durumu Repository Modelleri
 
 Domain'e özgü bir hava durumu modeli sunmak için yeni bir `weather.dart` dosyası
-oluşturacağız. Bu model yalnızca iş senaryolarımızla ilgili verileri içerecek
--- başka bir deyişle, API istemcisinden ve ham veri formatından tamamen
-ayrılmış olmalıdır. Her zaman olduğu gibi, bir `models.dart` barrel dosyası da
+oluşturacağız. Bu model yalnızca iş senaryolarımızla ilgili verileri içerecek --
+başka bir deyişle, API istemcisinden ve ham veri formatından tamamen ayrılmış
+olmalıdır. Her zaman olduğu gibi, bir `models.dart` barrel dosyası da
 oluşturacağız.
 
 <RepositoryModelsBarrelTreeSnippet />
 
 Bu kez, hava durumu modelimiz yalnızca `location, temperature, condition`
-özelliklerini saklayacak. Ayrıca, serileştirme ve serileştirmesini kaldırma
-için kodumuzu annote etmeye devam edeceğiz.
+özelliklerini saklayacak. Ayrıca, serileştirme ve serileştirmesini kaldırma için
+kodumuzu annote etmeye devam edeceğiz.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_weather/packages/weather_repository/lib/src/models/weather.dart"
@@ -474,16 +479,15 @@ seviyesinde bir barrel dosyası da oluşturalım:
 
 `WeatherRepository`'nin temel amacı, veri sağlayıcısını soyutlayan bir arayüz
 sunmaktır. Bu durumda, `WeatherRepository`'nin `WeatherApiClient`'a bir
-bağımlılığı olacak ve tek bir genel metot sunacaktır:
-`getWeather(String city)`.
+bağımlılığı olacak ve tek bir genel metot sunacaktır: `getWeather(String city)`.
 
 :::note
 
 `WeatherRepository`'nin tüketicileri, hava durumu API'sine iki ağ isteği
-yapıldığı gibi temel uygulama detaylarına vakıf değildir. `WeatherRepository`'nin
-amacı "ne"yi "nasıl"dan ayırmaktır -- başka bir deyişle, belirli bir şehir için
-hava durumunu getirmenin bir yolunu istiyoruz, ancak bu verinin nereden veya
-nasıl geldiğine önem vermiyoruz.
+yapıldığı gibi temel uygulama detaylarına vakıf değildir.
+`WeatherRepository`'nin amacı "ne"yi "nasıl"dan ayırmaktır -- başka bir deyişle,
+belirli bir şehir için hava durumunu getirmenin bir yolunu istiyoruz, ancak bu
+verinin nereden veya nasıl geldiğine önem vermiyoruz.
 
 :::
 
@@ -511,8 +515,8 @@ Daha önce oluşturduğumuz barrel dosyasını güncelleyin.
 
 ### Birim Testleri
 
-Veri katmanında olduğu gibi, domain seviyesindeki mantığın doğru olduğundan
-emin olmak için repository katmanını test etmek kritik öneme sahiptir.
+Veri katmanında olduğu gibi, domain seviyesindeki mantığın doğru olduğundan emin
+olmak için repository katmanını test etmek kritik öneme sahiptir.
 `WeatherRepository`'mizi test etmek için
 [mocktail](https://github.com/felangel/mocktail) kütüphanesini kullanacağız.
 `WeatherRepository` mantığını izole, kontrollü bir ortamda birim test edebilmek
@@ -542,13 +546,13 @@ kümesi için özel olarak gerekli olan ilgili bilgileri içerecek.
 ### Kurulum
 
 İş mantığı katmanımız ana uygulamamızda bulunduğundan, tüm `flutter_weather`
-projesi için `pubspec.yaml`'ı düzenlememiz ve kullanacağımız tüm paketleri
-dahil etmemiz gerekir.
+projesi için `pubspec.yaml`'ı düzenlememiz ve kullanacağımız tüm paketleri dahil
+etmemiz gerekir.
 
-- [equatable](https://pub.dev/packages/equatable) kullanmak, uygulamamızın
-  durum sınıfı örneklerinin eşittir `==` operatörü kullanılarak karşılaştırılmasını
-  mümkün kılar. Arka planda, bloc, durumlarımızın eşit olup olmadığını
-  görmek için karşılaştıracak ve eşit değilse bir yeniden oluşturmayı (rebuild)
+- [equatable](https://pub.dev/packages/equatable) kullanmak, uygulamamızın durum
+  sınıfı örneklerinin eşittir `==` operatörü kullanılarak karşılaştırılmasını
+  mümkün kılar. Arka planda, bloc, durumlarımızın eşit olup olmadığını görmek
+  için karşılaştıracak ve eşit değilse bir yeniden oluşturmayı (rebuild)
   tetikleyecektir. Bu, widget ağacımızın yalnızca gerektiğinde yeniden
   oluşturulmasını ve performansın hızlı ve duyarlı kalmasını garanti eder.
 - Kullanıcı arayüzümüze [google_fonts](https://pub.dev/packages/google_fonts)
@@ -559,9 +563,9 @@ dahil etmemiz gerekir.
   oluşturduğumuz `weather_repository` paketini de dahil edeceğiz!
 
 Test için, bağımlılıkları mocklamak için `mocktail` ile birlikte her zamanki
-`test` paketini ve iş mantığı birimlerinin yani bloc'ların kolay testini
-mümkün kılmak için
-[bloc_test](https://pub.dev/packages/bloc_test)'i dahil etmek isteyeceğiz!
+`test` paketini ve iş mantığı birimlerinin yani bloc'ların kolay testini mümkün
+kılmak için [bloc_test](https://pub.dev/packages/bloc_test)'i dahil etmek
+isteyeceğiz!
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_weather/pubspec.yaml"
@@ -614,8 +618,8 @@ Sonra, üst seviyede bir hava durumu barrel dosyası
 
 ### Hava Durumu
 
-Uygulamamızın, kapatıldıktan ve yeniden açıldıktan sonra bile uygulama
-durumunu hatırlamasını sağlamak için `HydratedCubit` kullanacağız.
+Uygulamamızın, kapatıldıktan ve yeniden açıldıktan sonra bile uygulama durumunu
+hatırlamasını sağlamak için `HydratedCubit` kullanacağız.
 
 :::note
 
@@ -627,9 +631,9 @@ yöneten bir `Cubit` uzantısıdır.
 #### Hava Durumu Durumu (State)
 
 [Bloc VSCode](https://marketplace.visualstudio.com/items?itemName=FelixAngelov.bloc)
-veya [Bloc IntelliJ](https://plugins.jetbrains.com/plugin/12129-bloc)
-uzantısını kullanarak `weather` dizinine sağ tıklayın ve `Weather` adında yeni
-bir cubit oluşturun. Proje yapısı şu şekilde görünmelidir:
+veya [Bloc IntelliJ](https://plugins.jetbrains.com/plugin/12129-bloc) uzantısını
+kullanarak `weather` dizinine sağ tıklayın ve `Weather` adında yeni bir cubit
+oluşturun. Proje yapısı şu şekilde görünmelidir:
 
 <WeatherCubitTreeSnippet />
 
@@ -677,8 +681,8 @@ Serileştirme kodunu üretmeyi unutmayın:
 ### Birim Testleri
 
 Veri ve repository katmanlarına benzer şekilde, özellik seviyesindeki mantığın
-beklediğimiz gibi davrandığından emin olmak için iş mantığı katmanını birim
-test etmek kritik öneme sahiptir. `mocktail` ve `test`'e ek olarak
+beklediğimiz gibi davrandığından emin olmak için iş mantığı katmanını birim test
+etmek kritik öneme sahiptir. `mocktail` ve `test`'e ek olarak
 [bloc_test](https://pub.dev/packages/bloc_test)'e güveneceğiz.
 
 `test`, `bloc_test` ve `mocktail` paketlerini `dev_dependencies`'e ekleyelim.
@@ -690,9 +694,9 @@ test etmek kritik öneme sahiptir. `mocktail` ve `test`'e ek olarak
 
 :::note
 
-[bloc_test](https://pub.dev/packages/bloc_test) paketi, bloc'larımızı test
-için kolayca hazırlamamıza, durum değişikliklerini ele almamıza ve sonuçları
-tutarlı bir şekilde kontrol etmemize olanak tanır.
+[bloc_test](https://pub.dev/packages/bloc_test) paketi, bloc'larımızı test için
+kolayca hazırlamamıza, durum değişikliklerini ele almamıza ve sonuçları tutarlı
+bir şekilde kontrol etmemize olanak tanır.
 
 :::
 
@@ -730,9 +734,8 @@ güncellemelerine olanak tanır.
 
 ### SearchPage
 
-Arama sayfası, kullanıcıların istedikleri şehrin adını girmesine olanak tanır
-ve arama sonucunu önceki route'a `Navigator.of(context).pop` aracılığıyla
-sağlar.
+Arama sayfası, kullanıcıların istedikleri şehrin adını girmesine olanak tanır ve
+arama sonucunu önceki route'a `Navigator.of(context).pop` aracılığıyla sağlar.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_weather/lib/search/view/search_page.dart"

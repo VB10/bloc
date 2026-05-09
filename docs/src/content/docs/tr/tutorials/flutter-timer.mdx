@@ -1,6 +1,8 @@
 ---
 title: Flutter Zamanlayıcı
-description: Bloc ile Flutter zamanlayıcı uygulamasının nasıl oluşturulacağına dair kapsamlı bir rehber.
+description:
+  Bloc ile Flutter zamanlayıcı uygulamasının nasıl oluşturulacağına dair
+  kapsamlı bir rehber.
 sidebar:
   order: 2
 ---
@@ -27,13 +29,14 @@ oluşturacağımızı ele alacağız. Tamamlanan uygulama şöyle görünmelidir
 
 ## Önemli Konular
 
-- [BlocObserver](/tr/bloc-concepts#blocobserver) ile durum değişikliklerini gözlemleme.
+- [BlocObserver](/tr/bloc-concepts#blocobserver) ile durum değişikliklerini
+  gözlemleme.
 - [BlocProvider](/tr/flutter-bloc-concepts#blocprovider), alt widget'larına bir
   bloc sağlayan Flutter widget'ı.
 - [BlocBuilder](/tr/flutter-bloc-concepts#blocbuilder), yeni durumlara karşılık
   widget'ın yeniden oluşturulmasını yöneten Flutter widget'ı.
-- [Equatable](/tr/faqs#when-to-use-equatable) ile gereksiz yeniden
-  oluşturmaları önleme.
+- [Equatable](/tr/faqs#when-to-use-equatable) ile gereksiz yeniden oluşturmaları
+  önleme.
 - Bir Bloc içinde `StreamSubscription` kullanmayı öğrenme.
 - `buildWhen` ile gereksiz yeniden oluşturmaları önleme.
 
@@ -91,9 +94,8 @@ verebileceğimiz bir tik stream'i sunacaktır.
 	title="lib/ticker.dart"
 />
 
-`Ticker` sınıfımızın yaptığı tek şey, istediğimiz tik (saniye) sayısını alıp
-her saniye kalan saniyeleri yayan bir stream döndüren bir tick fonksiyonu
-sunmaktır.
+`Ticker` sınıfımızın yaptığı tek şey, istediğimiz tik (saniye) sayısını alıp her
+saniye kalan saniyeleri yayan bir stream döndüren bir tick fonksiyonu sunmaktır.
 
 Sırada, `Ticker`'ı tüketecek olan `TimerBloc`'umuzu oluşturmamız gerekiyor.
 
@@ -110,8 +112,8 @@ Sırada, `Ticker`'ı tüketecek olan `TimerBloc`'umuzu oluşturmamız gerekiyor.
 - `TimerRunPause`: belirli bir kalan sürede duraklatılmış.
 - `TimerRunComplete`: kalan süre 0 ile tamamlanmış.
 
-Bu durumların her biri, kullanıcı arayüzü ve kullanıcının yapabileceği
-eylemler üzerinde bir etkiye sahip olacaktır. Örneğin:
+Bu durumların her biri, kullanıcı arayüzü ve kullanıcının yapabileceği eylemler
+üzerinde bir etkiye sahip olacaktır. Örneğin:
 
 - Durum `TimerInitial` ise kullanıcı zamanlayıcıyı başlatabilecek.
 - Durum `TimerRunInProgress` ise kullanıcı zamanlayıcıyı duraklatabilecek ve
@@ -192,9 +194,9 @@ Sırada, `Ticker`'a olan bağımlılığımızı tanımlamamız gerekiyor.
 Ayrıca biraz sonra inceleyeceğimiz `Ticker`'ımız için bir `StreamSubscription`
 da tanımlıyoruz.
 
-Bu noktada yapmamız gereken tek şey olay işleyicilerini uygulamaktır. Daha
-iyi okunabilirlik için, her olay işleyicisini kendi yardımcı fonksiyonuna
-ayırmayı tercih ediyorum. `TimerStarted` olayıyla başlayalım.
+Bu noktada yapmamız gereken tek şey olay işleyicilerini uygulamaktır. Daha iyi
+okunabilirlik için, her olay işleyicisini kendi yardımcı fonksiyonuna ayırmayı
+tercih ediyorum. `TimerStarted` olayıyla başlayalım.
 
 <TimerBlocOnStartedSnippet />
 
@@ -211,9 +213,9 @@ Sırada, `_TimerTicked` olay işleyicisini uygulayalım.
 <TimerBlocOnTickedSnippet />
 
 Her `_TimerTicked` olayı alındığında, eğer tikin süresi 0'dan büyükse, yeni
-süreyle güncellenmiş bir `TimerRunInProgress` durumu yaymaktayız. Aksi
-takdirde, tikin süresi 0 ise, zamanlayıcımız sona ermiştir ve bir
-`TimerRunComplete` durumu yaymamız gerekir.
+süreyle güncellenmiş bir `TimerRunInProgress` durumu yaymaktayız. Aksi takdirde,
+tikin süresi 0 ise, zamanlayıcımız sona ermiştir ve bir `TimerRunComplete`
+durumu yaymamız gerekir.
 
 Şimdi `TimerPaused` olay işleyicisini uygulayalım.
 
@@ -229,9 +231,9 @@ işleyicisini uygulayalım.
 <TimerBlocOnResumedSnippet />
 
 `TimerResumed` olay işleyicisi, `TimerPaused` olay işleyicisine çok benzer.
-`TimerBloc` `TimerRunPause` `state`'inde ise ve bir `TimerResumed` olayı
-alırsa, `_tickerSubscription`'ı devam ettirir ve mevcut süreyle bir
-`TimerRunInProgress` durumu yayar.
+`TimerBloc` `TimerRunPause` `state`'inde ise ve bir `TimerResumed` olayı alırsa,
+`_tickerSubscription`'ı devam ettirir ve mevcut süreyle bir `TimerRunInProgress`
+durumu yayar.
 
 Son olarak, `TimerReset` olay işleyicisini uygulamamız gerekir.
 
@@ -240,12 +242,12 @@ Son olarak, `TimerReset` olay işleyicisini uygulamamız gerekir.
 	title="lib/timer/bloc/timer_bloc.dart"
 />
 
-`TimerBloc`, bir `TimerReset` olayı alırsa, ek tikler hakkında bildirim
-almaması için mevcut `_tickerSubscription`'ı iptal etmesi ve orijinal süreyle
-bir `TimerInitial` durumu yayması gerekir.
+`TimerBloc`, bir `TimerReset` olayı alırsa, ek tikler hakkında bildirim almaması
+için mevcut `_tickerSubscription`'ı iptal etmesi ve orijinal süreyle bir
+`TimerInitial` durumu yayması gerekir.
 
-`TimerBloc` ile ilgili her şey bu kadar. Şimdi geriye kalan tek şey
-Zamanlayıcı Uygulamamız için kullanıcı arayüzünü uygulamaktır.
+`TimerBloc` ile ilgili her şey bu kadar. Şimdi geriye kalan tek şey Zamanlayıcı
+Uygulamamız için kullanıcı arayüzünü uygulamaktır.
 
 ## Uygulama Arayüzü
 
@@ -306,10 +308,10 @@ durumuna göre farklı `FloatingActionButtons` döndürür.
 
 `builder` fonksiyonunun ne zaman çağrılacağı konusunda ince ayarlı bir kontrol
 istiyorsanız, `BlocBuilder`'a opsiyonel bir `buildWhen` sağlayabilirsiniz.
-`buildWhen`, önceki bloc durumunu ve mevcut bloc durumunu alır ve bir
-`boolean` döndürür. `buildWhen` `true` döndürürse, `builder` `state` ile
-çağrılır ve widget yeniden oluşturulur. `buildWhen` `false` döndürürse,
-`builder` `state` ile çağrılmaz ve yeniden oluşturma gerçekleşmez.
+`buildWhen`, önceki bloc durumunu ve mevcut bloc durumunu alır ve bir `boolean`
+döndürür. `buildWhen` `true` döndürürse, `builder` `state` ile çağrılır ve
+widget yeniden oluşturulur. `buildWhen` `false` döndürürse, `builder` `state`
+ile çağrılmaz ve yeniden oluşturma gerçekleşmez.
 
 Bu durumda, verimsiz olacağı için `Actions` widget'ının her tikte yeniden
 oluşturulmasını istemiyoruz. Bunun yerine, yalnızca `TimerState`'in
@@ -338,8 +340,8 @@ Son olarak, arka plan widget'ını aşağıdaki gibi ekleyin:
 ### Hepsini bir araya getirme
 
 İşte hepsi bu kadar! Bu noktada, yalnızca yeniden oluşturulması gereken
-widget'ları verimli bir şekilde yeniden oluşturan oldukça sağlam bir
-zamanlayıcı uygulamamız var.
+widget'ları verimli bir şekilde yeniden oluşturan oldukça sağlam bir zamanlayıcı
+uygulamamız var.
 
 Bu örneğin tam kaynak kodu
 [buradan](https://github.com/felangel/Bloc/tree/master/examples/flutter_timer)

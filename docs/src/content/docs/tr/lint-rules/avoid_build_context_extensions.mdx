@@ -25,16 +25,15 @@ paketinin `0.3.0` sürümünde tanıtılmıştır.
 
 ## Neden?
 
-Tutarlılık ve açıklık adına, `BuildContext` uzantıları yerine doğrudan
-ilgili metotları kullanmayı tercih edin. Bu yaklaşım test edilebilirlik
-açısından da faydalıdır çünkü uzantı (extension) metotlarını mocklamak
-mümkün değildir.
+Tutarlılık ve açıklık adına, `BuildContext` uzantıları yerine doğrudan ilgili
+metotları kullanmayı tercih edin. Bu yaklaşım test edilebilirlik açısından da
+faydalıdır çünkü uzantı (extension) metotlarını mocklamak mümkün değildir.
 
-| uzantı           | açık metot                                                          |
-| ---------------- | ------------------------------------------------------------------- |
-| `context.read`   | `BlocProvider.of<Bloc>(context, listen: false)`                     |
+| uzantı           | açık metot                                                            |
+| ---------------- | --------------------------------------------------------------------- |
+| `context.read`   | `BlocProvider.of<Bloc>(context, listen: false)`                       |
 | `context.watch`  | `BlocBuilder<Bloc, State>(...)` veya `BlocProvider.of<Bloc>(context)` |
-| `context.select` | `BlocSelector<Bloc, State>(...)`                                    |
+| `context.select` | `BlocSelector<Bloc, State>(...)`                                      |
 
 ## Örnekler
 

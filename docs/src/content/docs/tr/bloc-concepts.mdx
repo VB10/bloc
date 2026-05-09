@@ -208,8 +208,8 @@ Bu örnekte aboneliğin hemen iptal edilmesini önlemek için
 
 :::caution
 
-Bir `Cubit` üzerinde `listen` çağrıldığında yalnızca sonraki durum değişiklikleri
-alınır.
+Bir `Cubit` üzerinde `listen` çağrıldığında yalnızca sonraki durum
+değişiklikleri alınır.
 
 :::
 
@@ -239,10 +239,10 @@ Bir `Change`, `Cubit`'in durumu güncellenmeden hemen önce meydana gelir. Bir
 
 #### BlocObserver
 
-bloc kütüphanesini kullanmanın ek bir avantajı, tüm `Change`'lere tek bir
-yerden erişebilmemizdir. Bu uygulamada yalnızca bir `Cubit`'e sahip olsak da,
-daha büyük uygulamalarda uygulamanın durumunun farklı bölümlerini yöneten
-birçok `Cubit`'e sahip olmak oldukça yaygındır.
+bloc kütüphanesini kullanmanın ek bir avantajı, tüm `Change`'lere tek bir yerden
+erişebilmemizdir. Bu uygulamada yalnızca bir `Cubit`'e sahip olsak da, daha
+büyük uygulamalarda uygulamanın durumunun farklı bölümlerini yöneten birçok
+`Cubit`'e sahip olmak oldukça yaygındır.
 
 Tüm `Change`'lere tepki olarak bir şey yapmak istiyorsak, kendi
 `BlocObserver`'ımızı oluşturmamız yeterlidir.
@@ -256,8 +256,8 @@ override etmektir.
 
 :::
 
-`SimpleBlocObserver`'ı kullanmak için yalnızca `main` fonksiyonunu
-değiştirmemiz yeterlidir:
+`SimpleBlocObserver`'ı kullanmak için yalnızca `main` fonksiyonunu değiştirmemiz
+yeterlidir:
 
 <SimpleBlocObserverOnChangeUsageSnippet />
 
@@ -329,9 +329,8 @@ geçirerek bir başlangıç durumu belirtmemiz gerekir.
 ### Bloc Durum Değişiklikleri
 
 `Bloc`, `Cubit`'teki fonksiyonların aksine, `on<Event>` API'si aracılığıyla
-event handler'ları kaydetmemizi gerektirir. Bir event handler, gelen
-herhangi bir olayı sıfır veya daha fazla çıkış durumuna dönüştürmekten
-sorumludur.
+event handler'ları kaydetmemizi gerektirir. Bir event handler, gelen herhangi
+bir olayı sıfır veya daha fazla çıkış durumuna dönüştürmekten sorumludur.
 
 <CounterBlocEventHandlerSnippet />
 
@@ -348,9 +347,9 @@ güncelleyebiliriz:
 <CounterBlocIncrementSnippet />
 
 Yukarıdaki snippet'te, tüm `CounterIncrementPressed` olaylarını yönetecek bir
-`EventHandler` kaydettik. Gelen her `CounterIncrementPressed` olayı için
-bloc'un mevcut durumuna `state` getter'ı üzerinden erişebilir ve
-`emit(state + 1)` çağırabiliriz.
+`EventHandler` kaydettik. Gelen her `CounterIncrementPressed` olayı için bloc'un
+mevcut durumuna `state` getter'ı üzerinden erişebilir ve `emit(state + 1)`
+çağırabiliriz.
 
 :::note
 
@@ -386,15 +385,15 @@ Bu noktada, `CounterBloc`'umuzun bir örneğini oluşturup kullanabiliriz!
 Yukarıdaki snippet'te, `CounterBloc`'un bir örneğini oluşturarak başlıyoruz.
 Ardından `Bloc`'un mevcut durumunu yazdırıyoruz; bu başlangıç durumudur (henüz
 yeni bir durum yayılmadığı için). Daha sonra, durum değişikliğini tetiklemek
-için `CounterIncrementPressed` olayını ekliyoruz. Son olarak, `Bloc`'un
-durumunu tekrar yazdırıyoruz; bu durum `0`'dan `1`'e geçti ve dahili durum
-stream'ini kapatmak için `Bloc` üzerinde `close` çağırıyoruz.
+için `CounterIncrementPressed` olayını ekliyoruz. Son olarak, `Bloc`'un durumunu
+tekrar yazdırıyoruz; bu durum `0`'dan `1`'e geçti ve dahili durum stream'ini
+kapatmak için `Bloc` üzerinde `close` çağırıyoruz.
 
 :::note
 
 Sonraki event-loop yinelemesini beklediğimizden emin olmak için (yani
-`EventHandler`'ın olayı işleyebilmesi için) `await Future.delayed(Duration.zero)`
-eklenmiştir.
+`EventHandler`'ın olayı işleyebilmesi için)
+`await Future.delayed(Duration.zero)` eklenmiştir.
 
 :::
 
@@ -406,12 +405,11 @@ anlamına gelir:
 
 <CounterBlocStreamUsageSnippet />
 
-Yukarıdaki snippet'te, `CounterBloc`'a abone oluyor ve her durum
-değişikliğinde print çağırıyoruz. Ardından, `on<CounterIncrementPressed>`
-`EventHandler`'ını tetikleyerek yeni bir durum yayacak olan
-`CounterIncrementPressed` olayını ekliyoruz. Son olarak, artık güncelleme
-almak istemediğimizde abonelik üzerinde `cancel` çağırıyor ve `Bloc`'u
-kapatıyoruz.
+Yukarıdaki snippet'te, `CounterBloc`'a abone oluyor ve her durum değişikliğinde
+print çağırıyoruz. Ardından, `on<CounterIncrementPressed>` `EventHandler`'ını
+tetikleyerek yeni bir durum yayacak olan `CounterIncrementPressed` olayını
+ekliyoruz. Son olarak, artık güncelleme almak istemediğimizde abonelik üzerinde
+`cancel` çağırıyor ve `Bloc`'u kapatıyoruz.
 
 :::note
 
@@ -530,8 +528,8 @@ göründüğünü görebiliriz:
 
 :::caution
 
-Bir `EventHandler` içinde meydana gelen yakalanmamış (unhandled) tüm
-istisnalar (exception) da `onError`'a raporlanır.
+Bir `EventHandler` içinde meydana gelen yakalanmamış (unhandled) tüm istisnalar
+(exception) da `onError`'a raporlanır.
 
 :::
 
@@ -547,8 +545,8 @@ Artık `Cubit` ve `Bloc` sınıflarının temellerini ele aldığımıza göre, 
 `Cubit` kullanmanın en büyük avantajlarından biri sadeliktir. Bir `Cubit`
 oluştururken, yalnızca durumu ve durumu değiştirmek için sunmak istediğimiz
 fonksiyonları tanımlamamız gerekir. Buna karşılık, bir `Bloc` oluştururken
-durumları, olayları ve `EventHandler` implementasyonunu tanımlamamız gerekir.
-Bu da `Cubit`'i anlamayı kolaylaştırır ve daha az kod gerektirir.
+durumları, olayları ve `EventHandler` implementasyonunu tanımlamamız gerekir. Bu
+da `Cubit`'i anlamayı kolaylaştırır ve daha az kod gerektirir.
 
 Şimdi iki sayaç implementasyonuna birlikte bakalım:
 
@@ -574,30 +572,28 @@ uygulamanın işlevselliği için kritik olan durumlarda, durum değişiklikleri
 olarak tüm olayları yakalamak için olay güdümlü bir yaklaşım benimsemek çok
 faydalı olabilir.
 
-Yaygın bir kullanım senaryosu `AuthenticationState`'i yönetmek olabilir.
-Sadelik adına, `AuthenticationState`'i bir `enum` ile temsil edebileceğimizi
-varsayalım:
+Yaygın bir kullanım senaryosu `AuthenticationState`'i yönetmek olabilir. Sadelik
+adına, `AuthenticationState`'i bir `enum` ile temsil edebileceğimizi varsayalım:
 
 <AuthenticationStateSnippet />
 
 Uygulamanın durumunun `authenticated`'tan `unauthenticated`'a değişmesinin
 birçok nedeni olabilir. Örneğin, kullanıcı bir logout butonuna basmış ve
-uygulamadan çıkış yapmak istemiş olabilir. Öte yandan, belki kullanıcının
-access token'ı iptal edilmiştir ve zorla oturumu kapatılmıştır. `Bloc`
-kullanırken, uygulama durumunun belirli bir duruma nasıl geldiğini açıkça
-izleyebiliriz.
+uygulamadan çıkış yapmak istemiş olabilir. Öte yandan, belki kullanıcının access
+token'ı iptal edilmiştir ve zorla oturumu kapatılmıştır. `Bloc` kullanırken,
+uygulama durumunun belirli bir duruma nasıl geldiğini açıkça izleyebiliriz.
 
 <AuthenticationTransitionSnippet />
 
-Yukarıdaki `Transition`, durumun neden değiştiğini anlamak için ihtiyacımız
-olan tüm bilgileri verir. `AuthenticationState`'i yönetmek için bir `Cubit`
+Yukarıdaki `Transition`, durumun neden değiştiğini anlamak için ihtiyacımız olan
+tüm bilgileri verir. `AuthenticationState`'i yönetmek için bir `Cubit`
 kullansaydık, log'larımız şöyle görünürdü:
 
 <AuthenticationChangeSnippet />
 
-Bu bize kullanıcının çıkış yaptığını söyler ancak nedenini açıklamaz; bu da
-hata ayıklama (debugging) ve uygulamanın durumunun zaman içinde nasıl
-değiştiğini anlamak için kritik olabilir.
+Bu bize kullanıcının çıkış yaptığını söyler ancak nedenini açıklamaz; bu da hata
+ayıklama (debugging) ve uygulamanın durumunun zaman içinde nasıl değiştiğini
+anlamak için kritik olabilir.
 
 #### Gelişmiş Olay Dönüşümleri
 
@@ -612,15 +608,15 @@ Stream transformer'lar için
 
 :::
 
-`Bloc`, gelen olay akışını kontrol etmemize ve dönüştürmemize olanak tanıyan
-bir event sink'e sahiptir.
+`Bloc`, gelen olay akışını kontrol etmemize ve dönüştürmemize olanak tanıyan bir
+event sink'e sahiptir.
 
 Örneğin, gerçek zamanlı bir arama oluşturuyor olsaydık, hız sınırına takılmamak
-ve arka uçtaki maliyeti/yükü azaltmak için backend'e yapılan istekleri
-debounce etmek isteyeceğimiz büyük olasılıktır.
+ve arka uçtaki maliyeti/yükü azaltmak için backend'e yapılan istekleri debounce
+etmek isteyeceğimiz büyük olasılıktır.
 
-`Bloc` ile, gelen olayların `Bloc` tarafından nasıl işlendiğini değiştirmek
-için özel bir `EventTransformer` sağlayabiliriz.
+`Bloc` ile, gelen olayların `Bloc` tarafından nasıl işlendiğini değiştirmek için
+özel bir `EventTransformer` sağlayabiliriz.
 
 <DebounceEventTransformerSnippet />
 
@@ -629,10 +625,10 @@ Yukarıdaki kod ile, çok az ek kodla gelen olayları kolayca debounce edebiliri
 :::tip
 
 Görüş bildiren (opinionated) bir event transformer seti için
-[`package:bloc_concurrency`](https://pub.dev/packages/bloc_concurrency)
-paketine göz atın.
+[`package:bloc_concurrency`](https://pub.dev/packages/bloc_concurrency) paketine
+göz atın.
 
 :::
 
-Hangisini kullanacağınızdan emin değilseniz, `Cubit` ile başlayın ve gerektiğinde
-daha sonra `Bloc`'a refactor edebilir veya ölçeklendirebilirsiniz.
+Hangisini kullanacağınızdan emin değilseniz, `Cubit` ile başlayın ve
+gerektiğinde daha sonra `Bloc`'a refactor edebilir veya ölçeklendirebilirsiniz.

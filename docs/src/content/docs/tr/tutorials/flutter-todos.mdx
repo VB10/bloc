@@ -1,6 +1,8 @@
 ---
 title: Flutter Yapılacaklar (Todos)
-description: Bloc ile Flutter yapılacaklar uygulaması oluşturmaya yönelik kapsamlı bir rehber.
+description:
+  Bloc ile Flutter yapılacaklar uygulaması oluşturmaya yönelik kapsamlı bir
+  rehber.
 sidebar:
   order: 6
 ---
@@ -29,24 +31,25 @@ uygulaması geliştireceğiz.
   [Bloc ve Cubit](/tr/bloc-concepts#cubit-vs-bloc).
 - Sorumlulukların ayrılması ve yeniden kullanılabilirliği kolaylaştırmak için
   [Katmanlı Mimari](/tr/architecture).
-- Durum değişikliklerini gözlemlemek için [BlocObserver](/tr/bloc-concepts#blocobserver).
+- Durum değişikliklerini gözlemlemek için
+  [BlocObserver](/tr/bloc-concepts#blocobserver).
 - Çocuklarına bir bloc sağlayan Flutter widget'ı olan
   [BlocProvider](/tr/flutter-bloc-concepts#blocprovider).
 - Yeni durumlara yanıt olarak widget oluşturmayı yöneten Flutter widget'ı olan
   [BlocBuilder](/tr/flutter-bloc-concepts#blocbuilder).
-- Durum değişikliklerine yanıt olarak yan etkileri (side effect) yöneten
-  Flutter widget'ı olan [BlocListener](/tr/flutter-bloc-concepts#bloclistener).
+- Durum değişikliklerine yanıt olarak yan etkileri (side effect) yöneten Flutter
+  widget'ı olan [BlocListener](/tr/flutter-bloc-concepts#bloclistener).
 - Çocuklarına bir repository sağlayan Flutter widget'ı olan
   [RepositoryProvider](/tr/flutter-bloc-concepts#repositoryprovider).
 - Gereksiz yeniden oluşturmaları önlemek için
   [Equatable](/tr/faqs#when-to-use-equatable).
-- Birden fazla BlocListener kullanırken iç içe geçmeyi azaltan Flutter widget'ı olan
-  [MultiBlocListener](/tr/flutter-bloc-concepts#multibloclistener).
+- Birden fazla BlocListener kullanırken iç içe geçmeyi azaltan Flutter widget'ı
+  olan [MultiBlocListener](/tr/flutter-bloc-concepts#multibloclistener).
 
 ## Kurulum
 
-[very_good_cli](https://pub.dev/packages/very_good_cli) kullanarak yepyeni
-bir Flutter projesi oluşturarak başlayalım.
+[very_good_cli](https://pub.dev/packages/very_good_cli) kullanarak yepyeni bir
+Flutter projesi oluşturarak başlayalım.
 
 <FlutterCreateSnippet />
 
@@ -80,14 +83,15 @@ Uygulamamızın proje yapısı şu şekilde olmalıdır:
 
 <ProjectStructureSnippet />
 
-Projeyi birden fazla pakete ayırıyoruz; böylece her paket için açık bağımlılıkları,
+Projeyi birden fazla pakete ayırıyoruz; böylece her paket için açık
+bağımlılıkları,
 [tek sorumluluk prensibini](https://en.wikipedia.org/wiki/Single-responsibility_principle)
-güçlendiren net sınırlarla koruyabiliriz. Projemizi bu şekilde modülerleştirmenin
-birçok faydası vardır, bunlardan bazıları:
+güçlendiren net sınırlarla koruyabiliriz. Projemizi bu şekilde
+modülerleştirmenin birçok faydası vardır, bunlardan bazıları:
 
 - Paketleri birden fazla projede yeniden kullanmak kolaylaşır
-- CI/CD'de verimlilik açısından iyileşmeler sağlar (yalnızca değişen kod üzerinde
-  kontroller yapmak)
+- CI/CD'de verimlilik açısından iyileşmeler sağlar (yalnızca değişen kod
+  üzerinde kontroller yapmak)
 - Paketleri kendi adanmış test paketleri, semantik versiyonlama ve sürüm
   döngüsü/sıklığı ile izole şekilde sürdürmek kolaydır
 
@@ -95,12 +99,13 @@ birçok faydası vardır, bunlardan bazıları:
 
 ![Todos Mimari Diyagramı](~/assets/tutorials/todos-architecture.png)
 
-Kodumuzu katmanlamak son derece önemlidir ve hızlı ve güvenle iterasyon yapmamıza
-yardımcı olur. Her katmanın tek bir sorumluluğu vardır ve izole olarak
-kullanılıp test edilebilir. Bu, değişiklikleri belirli bir katmanla sınırlandırmamıza
-ve dolayısıyla tüm uygulama üzerindeki etkiyi en aza indirmemize olanak tanır.
-Ayrıca, uygulamamızı katmanlamak, kütüphaneleri birden fazla projede kolayca
-yeniden kullanmamızı sağlar (özellikle veri katmanı söz konusu olduğunda).
+Kodumuzu katmanlamak son derece önemlidir ve hızlı ve güvenle iterasyon
+yapmamıza yardımcı olur. Her katmanın tek bir sorumluluğu vardır ve izole olarak
+kullanılıp test edilebilir. Bu, değişiklikleri belirli bir katmanla
+sınırlandırmamıza ve dolayısıyla tüm uygulama üzerindeki etkiyi en aza
+indirmemize olanak tanır. Ayrıca, uygulamamızı katmanlamak, kütüphaneleri birden
+fazla projede kolayca yeniden kullanmamızı sağlar (özellikle veri katmanı söz
+konusu olduğunda).
 
 Uygulamamız üç ana katmandan oluşur:
 
@@ -115,17 +120,17 @@ Uygulamamız üç ana katmandan oluşur:
 Bu katman en alt katmandır ve veritabanları, API'ler vb. dış kaynaklardan ham
 veri alma sorumluluğunu üstlenir. Veri katmanındaki paketler genellikle herhangi
 bir UI'a bağımlı olmamalı ve yeniden kullanılabilir olmalı, hatta
-[pub.dev](https://pub.dev) üzerinde bağımsız bir paket olarak yayınlanabilmelidir.
-Bu örnekte veri katmanımız `todos_api` ve `local_storage_todos_api` paketlerinden
-oluşur.
+[pub.dev](https://pub.dev) üzerinde bağımsız bir paket olarak
+yayınlanabilmelidir. Bu örnekte veri katmanımız `todos_api` ve
+`local_storage_todos_api` paketlerinden oluşur.
 
 **Domain Katmanı**
 
 Bu katman bir veya daha fazla veri sağlayıcıyı birleştirir ve verilere "iş
 kurallarını" uygular. Bu katmandaki her bileşene repository denir ve her
 repository genellikle tek bir domain'i yönetir. Repository katmanındaki paketler
-genellikle yalnızca veri katmanıyla etkileşime girmelidir. Bu örnekte
-repository katmanımız `todos_repository` paketinden oluşur.
+genellikle yalnızca veri katmanıyla etkileşime girmelidir. Bu örnekte repository
+katmanımız `todos_repository` paketinden oluşur.
 
 **Özellik Katmanı**
 
@@ -176,10 +181,10 @@ ekleyebiliriz.
 
 Sırada `Todo` modelimizi tanımlayacağız.
 
-Dikkat edilmesi gereken ilk şey, `Todo` modelinin uygulamamızda
-yaşamamasıdır — bu, `todos_api` paketinin bir parçasıdır. Bunun nedeni,
-`TodosApi`'nin `Todo` nesneleri döndüren/kabul eden API'ler tanımlamasıdır.
-Model, depolanacak/alınacak ham Todo nesnesinin Dart temsilidir.
+Dikkat edilmesi gereken ilk şey, `Todo` modelinin uygulamamızda yaşamamasıdır —
+bu, `todos_api` paketinin bir parçasıdır. Bunun nedeni, `TodosApi`'nin `Todo`
+nesneleri döndüren/kabul eden API'ler tanımlamasıdır. Model,
+depolanacak/alınacak ham Todo nesnesinin Dart temsilidir.
 
 `Todo` modeli, json (de)serileştirmeyi yönetmek için
 [json_serializable](https://pub.dev/packages/json_serializable) kullanır. Bu
@@ -234,10 +239,11 @@ bakabilirsiniz.
 tam listesinin sağlanması gerektiği anlamına gelir.
 
 - Bu yaklaşımın bir kısıtlaması, standart CRUD (Create, Read, Update ve Delete)
-  işleminin her çağrıda todo'ların tam listesinin gönderilmesini gerektirmesidir.
-  Örneğin, bir Todo Ekle ekranında yalnızca eklenen todo öğesini göndermek
-  mümkün değildir. Bunun yerine, tüm listeyi takip etmek ve güncellenmiş listeyi
-  kalıcı hale getirirken yeni tüm todo listesini sağlamak zorundayız.
+  işleminin her çağrıda todo'ların tam listesinin gönderilmesini
+  gerektirmesidir. Örneğin, bir Todo Ekle ekranında yalnızca eklenen todo
+  öğesini göndermek mümkün değildir. Bunun yerine, tüm listeyi takip etmek ve
+  güncellenmiş listeyi kalıcı hale getirirken yeni tüm todo listesini sağlamak
+  zorundayız.
 - İkinci bir kısıtlama, `loadTodos`'un verilerin tek seferlik bir teslimi
   olmasıdır. Uygulamanın güncellemeleri periyodik olarak istemek için mantık
   içermesi gerekir.
@@ -268,8 +274,8 @@ paketini kullanarak `todos_api`'yi uygular.
 
 ## Repository Katmanı
 
-Bir [repository](/tr/architecture#repository), iş katmanının bir parçasıdır.
-Bir repository, iş değeri olmayan bir veya daha fazla veri sağlayıcısına bağımlıdır
+Bir [repository](/tr/architecture#repository), iş katmanının bir parçasıdır. Bir
+repository, iş değeri olmayan bir veya daha fazla veri sağlayıcısına bağımlıdır
 ve onların açık API'lerini iş değeri sağlayan API'lere dönüştürür. Ayrıca,
 repository katmanına sahip olmak, veri elde etmeyi uygulamanın geri kalanından
 soyutlamaya yardımcı olur ve uygulamanın diğer bölümlerini etkilemeden verilerin
@@ -303,12 +309,11 @@ arasında sıkı bağlanmayı (tight coupling) önler.
 />
 
 `todos_repository` içinde ayrı bir model tanımlamak yerine, `todos_api`'dan
-gelen aynı `Todo` modelini yeniden dışa aktarmaya karar verdik; çünkü bu
-durumda veri modeli üzerinde tam kontrole sahibiz. Birçok durumda veri
-sağlayıcısı kontrol edebileceğiniz bir şey olmayacaktır. Bu durumlarda,
-arayüzün ve API kontratının tam kontrolünü sürdürebilmek için repository
-katmanında kendi model tanımlarınızı sürdürmeniz giderek daha önemli hale
-gelir.
+gelen aynı `Todo` modelini yeniden dışa aktarmaya karar verdik; çünkü bu durumda
+veri modeli üzerinde tam kontrole sahibiz. Birçok durumda veri sağlayıcısı
+kontrol edebileceğiniz bir şey olmayacaktır. Bu durumlarda, arayüzün ve API
+kontratının tam kontrolünü sürdürebilmek için repository katmanında kendi model
+tanımlarınızı sürdürmeniz giderek daha önemli hale gelir.
 
 ## Özellik Katmanı
 
@@ -407,8 +412,8 @@ barrel dosyasıdır.
 	title="lib/home/view/view.dart"
 />
 
-`home_page.dart`, uygulama başlatıldığında kullanıcının göreceği kök sayfa
-için UI'ı içerir.
+`home_page.dart`, uygulama başlatıldığında kullanıcının göreceği kök sayfa için
+UI'ı içerir.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_todos/lib/home/view/home_page.dart"
@@ -421,8 +426,8 @@ için UI'ı içerir.
 
 `HomePage`, `HomeView`'a bir `HomeCubit` örneği sağlar. `HomeView`, sekme her
 değiştiğinde seçici olarak yeniden oluşturmak için `context.select` kullanır.
-Bu, sahte bir `HomeCubit` sağlayarak ve durumu stub'layarak `HomeView`'ı
-kolayca widget testi yapmamıza olanak tanır.
+Bu, sahte bir `HomeCubit` sağlayarak ve durumu stub'layarak `HomeView`'ı kolayca
+widget testi yapmamıza olanak tanır.
 
 `BottomAppBar`, `HomeCubit`'te `setTab` çağrısı yapan `HomeTabButton`
 widget'larını içerir. Cubit örneği, `context.read` üzerinden aranır ve cubit
@@ -437,8 +442,8 @@ widget'larını içerir. Cubit örneği, `context.read` üzerinden aranır ve cu
 
 ### TodosOverview
 
-Todos overview özelliği, kullanıcıların todos oluşturarak, düzenleyerek,
-silerek ve filtreleyerek todos'larını yönetmelerine olanak tanır.
+Todos overview özelliği, kullanıcıların todos oluşturarak, düzenleyerek, silerek
+ve filtreleyerek todos'larını yönetmelerine olanak tanır.
 
 #### TodosOverviewEvent
 
@@ -459,13 +464,13 @@ olayları tanımlayalım.
 - `TodosOverviewClearCompletedRequested`: Bu, tüm tamamlanmış todos'u siler.
 - `TodosOverviewUndoDeletionRequested`: Bu, bir todo silme işlemini geri alır,
   örneğin yanlışlıkla silme.
-- `TodosOverviewFilterChanged`: Bu, argüman olarak bir `TodosViewFilter` alır
-  ve bir filtre uygulayarak görünümü değiştirir.
+- `TodosOverviewFilterChanged`: Bu, argüman olarak bir `TodosViewFilter` alır ve
+  bir filtre uygulayarak görünümü değiştirir.
 
 #### TodosOverviewState
 
-`todos_overview/bloc/todos_overview_state.dart` dosyasını oluşturalım ve
-durumu tanımlayalım.
+`todos_overview/bloc/todos_overview_state.dart` dosyasını oluşturalım ve durumu
+tanımlayalım.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_todos/lib/todos_overview/bloc/todos_overview_state.dart"
@@ -502,11 +507,11 @@ constructor üzerinden enjekte edilen bir repository örneğine güvenir.
 ##### onSubscriptionRequested
 
 `TodosOverviewSubscriptionRequested` eklendiğinde, bloc önce bir `loading`
-durumu yayarak başlar. Yanıt olarak, UI bir yükleniyor göstergesi
-render edebilir.
+durumu yayarak başlar. Yanıt olarak, UI bir yükleniyor göstergesi render
+edebilir.
 
-Sonrasında, `TodosRepository`'den gelen todos stream'inde bir abonelik
-oluşturan `emit.forEach<List<Todo>>( ... )`'i kullanırız.
+Sonrasında, `TodosRepository`'den gelen todos stream'inde bir abonelik oluşturan
+`emit.forEach<List<Todo>>( ... )`'i kullanırız.
 
 :::caution
 
@@ -524,8 +529,8 @@ stream'e abone olma için daha yeni bir desendir.
 
 :::
 
-Abonelik halledildiğine göre, todos eklemek, değiştirmek ve silmek gibi
-diğer olayları işleyeceğiz.
+Abonelik halledildiğine göre, todos eklemek, değiştirmek ve silmek gibi diğer
+olayları işleyeceğiz.
 
 ##### onTodoSaved
 
@@ -594,9 +599,9 @@ Sonrasında, `TodosOverviewPage`'e bir göz atalım.
 <TodosOverviewPageTreeSnippet />
 
 `Home` özelliğinde olduğu gibi, `TodosOverviewPage`,
-`BlocProvider<TodosOverviewBloc>` aracılığıyla alt ağaca bir
-`TodosOverviewBloc` örneği sağlar. Bu, `TodosOverviewBloc`'u yalnızca
-`TodosOverviewPage` altındaki widget'larla sınırlandırır.
+`BlocProvider<TodosOverviewBloc>` aracılığıyla alt ağaca bir `TodosOverviewBloc`
+örneği sağlar. Bu, `TodosOverviewBloc`'u yalnızca `TodosOverviewPage` altındaki
+widget'larla sınırlandırır.
 
 `TodosOverviewBloc`'taki değişiklikleri dinleyen üç widget vardır.
 
@@ -609,8 +614,8 @@ Sonrasında, `TodosOverviewPage`'e bir göz atalım.
    geri al'a dokunursa, `TodosOverviewUndoDeletionRequested` olayı bloc'a
    eklenecektir.
 
-3. Son olarak, todos'u görüntüleyen ListView'ı oluşturmak için bir
-   `BlocBuilder` kullanırız.
+3. Son olarak, todos'u görüntüleyen ListView'ı oluşturmak için bir `BlocBuilder`
+   kullanırız.
 
 `AppBar`, todos'u filtrelemek ve manipüle etmek için açılır menüler olan iki
 eylem içerir.
@@ -631,8 +636,8 @@ eylem içerir.
 
 #### Widget'lar
 
-`widgets.dart`, `todos_overview` özelliği içinde kullanılan tüm bileşenleri
-dışa aktaran başka bir barrel dosyasıdır.
+`widgets.dart`, `todos_overview` özelliği içinde kullanılan tüm bileşenleri dışa
+aktaran başka bir barrel dosyasıdır.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_todos/lib/todos_overview/widgets/widgets.dart"
@@ -777,9 +782,9 @@ bilgi okumasına gerek yoktur.
 ##### Veri Akışı
 
 Aynı todos listesine bağımlı birçok özellik olmasına rağmen, bloc'tan bloc'a
-iletişim yoktur. Bunun yerine, tüm özellikler birbirinden bağımsızdır ve
-todos listesindeki değişiklikleri dinlemek ve listeye güncellemeler yapmak
-için `TodosRepository`'ye güvenir.
+iletişim yoktur. Bunun yerine, tüm özellikler birbirinden bağımsızdır ve todos
+listesindeki değişiklikleri dinlemek ve listeye güncellemeler yapmak için
+`TodosRepository`'ye güvenir.
 
 Örneğin, `EditTodos`, `TodosOverview` veya `Stats` özellikleri hakkında hiçbir
 şey bilmez.
@@ -798,9 +803,9 @@ UI bir `EditTodoSubmitted` olayı gönderdiğinde:
 	title="lib/edit_todo/view/edit_todo_page.dart"
 />
 
-Önceki özelliklerde olduğu gibi, `EditTodosPage` `BlocProvider` aracılığıyla
-bir `EditTodosBloc` örneği sağlar. Diğer özelliklerin aksine, `EditTodosPage`
-ayrı bir route'tur, bu yüzden `static` bir `route` metodu sunar. Bu,
+Önceki özelliklerde olduğu gibi, `EditTodosPage` `BlocProvider` aracılığıyla bir
+`EditTodosBloc` örneği sağlar. Diğer özelliklerin aksine, `EditTodosPage` ayrı
+bir route'tur, bu yüzden `static` bir `route` metodu sunar. Bu,
 `Navigator.of(context).push(...)` aracılığıyla `EditTodosPage`'i navigasyon
 yığınına eklemeyi kolaylaştırır.
 

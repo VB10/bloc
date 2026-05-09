@@ -1,6 +1,8 @@
 ---
 title: Flutter Sayaç
-description: Bloc ile Flutter sayaç uygulamasının nasıl oluşturulacağına dair kapsamlı bir rehber.
+description:
+  Bloc ile Flutter sayaç uygulamasının nasıl oluşturulacağına dair kapsamlı bir
+  rehber.
 sidebar:
   order: 1
 ---
@@ -18,7 +20,8 @@ oluşturacağız.
 
 ## Önemli Konular
 
-- [BlocObserver](/tr/bloc-concepts#blocobserver) ile durum değişikliklerini gözlemleme.
+- [BlocObserver](/tr/bloc-concepts#blocobserver) ile durum değişikliklerini
+  gözlemleme.
 - [BlocProvider](/tr/flutter-bloc-concepts#blocprovider), alt widget'larına bir
   bloc sağlayan Flutter widget'ı.
 - [BlocBuilder](/tr/flutter-bloc-concepts#blocbuilder), yeni durumlara karşılık
@@ -115,10 +118,10 @@ belirtecektir.
 
 :::note
 
-`MaterialApp`'i genişletiyoruz çünkü `CounterApp` _bir_ `MaterialApp`'tir.
-Çoğu durumda `StatelessWidget` veya `StatefulWidget` örnekleri oluşturup
-`build` içinde widget'ları birleştireceğiz, ancak bu durumda birleştirilecek
-widget olmadığından `MaterialApp`'i genişletmek daha basittir.
+`MaterialApp`'i genişletiyoruz çünkü `CounterApp` _bir_ `MaterialApp`'tir. Çoğu
+durumda `StatelessWidget` veya `StatefulWidget` örnekleri oluşturup `build`
+içinde widget'ları birleştireceğiz, ancak bu durumda birleştirilecek widget
+olmadığından `MaterialApp`'i genişletmek daha basittir.
 
 :::
 
@@ -139,8 +142,7 @@ oluşturmaktan ve bunu `CounterView`'a sağlamaktan sorumludur.
 :::note
 
 Çok daha test edilebilir ve yeniden kullanılabilir kod elde etmek için bir
-`Cubit`'in oluşturulmasını, tüketiminden ayırmak veya gevşek bağlamak
-önemlidir.
+`Cubit`'in oluşturulmasını, tüketiminden ayırmak veya gevşek bağlamak önemlidir.
 
 :::
 
@@ -193,8 +195,8 @@ bir `BlocBuilder` ile sarmalanmıştır. Ek olarak, en yakın `CounterCubit`
 
 Yalnızca `Text` widget'ı bir `BlocBuilder` ile sarmalanmıştır çünkü
 `CounterCubit`'teki durum değişikliklerine tepki olarak yeniden oluşturulması
-gereken tek widget odur. Bir durum değiştiğinde yeniden oluşturulması
-gerekmeyen widget'ları gereksiz yere sarmalamaktan kaçının.
+gereken tek widget odur. Bir durum değiştiğinde yeniden oluşturulması gerekmeyen
+widget'ları gereksiz yere sarmalamaktan kaçının.
 
 :::
 
@@ -212,8 +214,8 @@ dosyasını ekleyin.
 
 `lib/counter/counter.dart` dosyasını oluşturalım:
 
-Counter özelliğinin tüm dışa açık parçalarını dışa aktarmak için
-`counter.dart` dosyasını ekleyin.
+Counter özelliğinin tüm dışa açık parçalarını dışa aktarmak için `counter.dart`
+dosyasını ekleyin.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_counter/lib/counter/counter.dart"
@@ -222,9 +224,9 @@ Counter özelliğinin tüm dışa açık parçalarını dışa aktarmak için
 
 İşte bu kadar! Sunum katmanını iş mantığı katmanından ayırdık. `CounterView`,
 bir kullanıcı bir düğmeye bastığında ne olacağını bilmez; sadece
-`CounterCubit`'i bilgilendirir. Üstelik `CounterCubit` de durumla (sayaç
-değeri) ne olduğundan habersizdir; çağrılan metotlara karşılık olarak
-yalnızca yeni durumlar yayar.
+`CounterCubit`'i bilgilendirir. Üstelik `CounterCubit` de durumla (sayaç değeri)
+ne olduğundan habersizdir; çağrılan metotlara karşılık olarak yalnızca yeni
+durumlar yayar.
 
 Uygulamamızı `flutter run` ile çalıştırabilir ve cihazımızda veya
 simülatör/emülatörde görüntüleyebiliriz.

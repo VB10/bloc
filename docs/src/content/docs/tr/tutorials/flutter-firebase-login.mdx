@@ -13,8 +13,8 @@ import FlutterPubGetSnippet from '~/components/tutorials/FlutterPubGetSnippet.as
 
 ![advanced](https://img.shields.io/badge/level-advanced-red.svg)
 
-Bu eğitimde, Bloc kütüphanesini kullanarak Flutter'da bir Firebase Giriş
-Akışı inşa edeceğiz.
+Bu eğitimde, Bloc kütüphanesini kullanarak Flutter'da bir Firebase Giriş Akışı
+inşa edeceğiz.
 
 ![demo](~/assets/tutorials/flutter-firebase-login.gif)
 
@@ -39,15 +39,14 @@ Akışı inşa edeceğiz.
 
 <FlutterCreateSnippet />
 
-[giriş eğitiminde](/tr/tutorials/flutter-login) olduğu gibi, uygulama
-mimarimizi daha iyi katmanlamak, net sınırlar korumak, yeniden kullanımı en
-üst düzeye çıkarmak ve test edilebilirliği geliştirmek için dahili paketler
-oluşturacağız.
+[giriş eğitiminde](/tr/tutorials/flutter-login) olduğu gibi, uygulama mimarimizi
+daha iyi katmanlamak, net sınırlar korumak, yeniden kullanımı en üst düzeye
+çıkarmak ve test edilebilirliği geliştirmek için dahili paketler oluşturacağız.
 
 Bu durumda, [firebase_auth](https://pub.dev/packages/firebase_auth) ve
-[google_sign_in](https://pub.dev/packages/google_sign_in) paketleri bizim
-veri katmanımız olacak; dolayısıyla yalnızca iki API istemcisinden gelen
-verileri birleştirmek için bir `AuthenticationRepository` oluşturacağız.
+[google_sign_in](https://pub.dev/packages/google_sign_in) paketleri bizim veri
+katmanımız olacak; dolayısıyla yalnızca iki API istemcisinden gelen verileri
+birleştirmek için bir `AuthenticationRepository` oluşturacağız.
 
 ## Authentication Repository
 
@@ -73,8 +72,8 @@ Sonra, bağımlılıkları şunu çalıştırarak kurabiliriz:
 `authentication_repository` dizini içinde.
 
 Çoğu paket gibi, `authentication_repository` de API yüzeyini
-`packages/authentication_repository/lib/authentication_repository.dart`
-yoluyla tanımlayacak.
+`packages/authentication_repository/lib/authentication_repository.dart` yoluyla
+tanımlayacak.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_firebase_login/packages/authentication_repository/lib/authentication_repository.dart"
@@ -83,8 +82,8 @@ yoluyla tanımlayacak.
 
 :::note
 
-`authentication_repository` paketi, bir `AuthenticationRepository` ile
-modelleri dışa aktaracak.
+`authentication_repository` paketi, bir `AuthenticationRepository` ile modelleri
+dışa aktaracak.
 
 :::
 
@@ -131,15 +130,15 @@ getirildiğinin alttaki uygulamasını soyutlamaktan sorumludur.
 />
 
 `AuthenticationRepository`, bir `User`'ın ne zaman değiştiği konusunda
-bilgilendirilebilmek için abone olabileceğimiz bir `Stream<User>` sunar.
-Buna ek olarak, `signUp`, `logInWithGoogle`, `logInWithEmailAndPassword` ve
-`logOut` yöntemlerini de sunar.
+bilgilendirilebilmek için abone olabileceğimiz bir `Stream<User>` sunar. Buna ek
+olarak, `signUp`, `logInWithGoogle`, `logInWithEmailAndPassword` ve `logOut`
+yöntemlerini de sunar.
 
 :::note
 
 `AuthenticationRepository` ayrıca veri katmanında oluşabilecek düşük seviyeli
-hataları ele almaktan ve alanla uyumlu temiz, basit bir hata kümesi
-sunmaktan sorumludur.
+hataları ele almaktan ve alanla uyumlu temiz, basit bir hata kümesi sunmaktan
+sorumludur.
 
 :::
 
@@ -149,8 +148,7 @@ projesine nasıl entegre edeceğimize bakalım.
 ## Firebase Kurulumu
 
 Uygulamamızı Firebase'e bağlamak ve
-[google_sign_in](https://pub.dev/packages/google_sign_in)'i etkinleştirmek
-için
+[google_sign_in](https://pub.dev/packages/google_sign_in)'i etkinleştirmek için
 [firebase_auth kullanım talimatlarını](https://pub.dev/packages/firebase_auth#usage)
 takip etmemiz gerekiyor.
 
@@ -171,8 +169,8 @@ değiştirebiliriz:
 	title="pubspec.yaml"
 />
 
-Tüm uygulama yerel asset'lerimiz için bir assets dizini belirttiğimize
-dikkat edin. Projenizin kök dizininde bir `assets` dizini oluşturun ve
+Tüm uygulama yerel asset'lerimiz için bir assets dizini belirttiğimize dikkat
+edin. Projenizin kök dizininde bir `assets` dizini oluşturun ve
 [bloc logosu](https://github.com/felangel/bloc/blob/master/examples/flutter_firebase_login/assets/bloc_logo_small.png)
 asset'ini ekleyin (daha sonra kullanacağız).
 
@@ -182,8 +180,8 @@ Sonra tüm bağımlılıkları kurun:
 
 :::note
 
-`authentication_repository` paketine path yoluyla bağımlıyız; bu sayede net
-bir ayrımı korurken hızlı bir şekilde ilerleyebiliriz.
+`authentication_repository` paketine path yoluyla bağımlıyız; bu sayede net bir
+ayrımı korurken hızlı bir şekilde ilerleyebiliriz.
 
 :::
 
@@ -196,23 +194,23 @@ bir ayrımı korurken hızlı bir şekilde ilerleyebiliriz.
 	title="lib/main.dart"
 />
 
-Burada uygulama için sadece bazı genel yapılandırmalar ayarlanıyor ve
-`runApp` bir `App` örneği ile çağrılıyor.
+Burada uygulama için sadece bazı genel yapılandırmalar ayarlanıyor ve `runApp`
+bir `App` örneği ile çağrılıyor.
 
 :::note
 
-`App`'e tek bir `AuthenticationRepository` örneği enjekte ediyoruz ve bu,
-açık bir constructor bağımlılığıdır.
+`App`'e tek bir `AuthenticationRepository` örneği enjekte ediyoruz ve bu, açık
+bir constructor bağımlılığıdır.
 
 :::
 
 ## App
 
-[giriş eğitiminde](/tr/tutorials/flutter-login) olduğu gibi, `app.dart`
-dosyamız uygulamaya `RepositoryProvider` aracılığıyla bir
-`AuthenticationRepository` örneği sağlar ve ayrıca bir `AuthenticationBloc`
-örneği oluşturup sunar. Ardından `AppView`, `AuthenticationBloc`'u tüketir
-ve `AuthenticationState`'e göre mevcut rotayı güncellemeyi yönetir.
+[giriş eğitiminde](/tr/tutorials/flutter-login) olduğu gibi, `app.dart` dosyamız
+uygulamaya `RepositoryProvider` aracılığıyla bir `AuthenticationRepository`
+örneği sağlar ve ayrıca bir `AuthenticationBloc` örneği oluşturup sunar.
+Ardından `AppView`, `AuthenticationBloc`'u tüketir ve `AuthenticationState`'e
+göre mevcut rotayı güncellemeyi yönetir.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_firebase_login/lib/app/view/app.dart"
@@ -222,9 +220,8 @@ ve `AuthenticationState`'e göre mevcut rotayı güncellemeyi yönetir.
 ## App Bloc
 
 `AppBloc`, uygulamanın genel durumunu yönetmekten sorumludur.
-`AuthenticationRepository`'ye bağımlıdır ve mevcut kullanıcıdaki
-değişikliklere yanıt olarak yeni durumlar yaymak için `user` Stream'ine abone
-olur.
+`AuthenticationRepository`'ye bağımlıdır ve mevcut kullanıcıdaki değişikliklere
+yanıt olarak yeni durumlar yaymak için `user` Stream'ine abone olur.
 
 ### State
 
@@ -252,8 +249,8 @@ constructor'a yönlendirir.
 
 ### Bloc
 
-Constructor gövdesinde, `AppEvent` alt sınıfları kendilerine karşılık gelen
-olay işleyicilerine eşlenir.
+Constructor gövdesinde, `AppEvent` alt sınıfları kendilerine karşılık gelen olay
+işleyicilerine eşlenir.
 
 `_onUserSubscriptionRequested` olay işleyicisinde, `AppBloc`,
 `AuthenticationRepository`'nin kullanıcı stream'ine abone olmak ve her bir
@@ -267,9 +264,9 @@ herhangi bir `BlocObserver`'a iletir.
 
 :::caution
 
-Eğer `onError` atlanırsa, kullanıcı stream'indeki herhangi bir hata
-işlenmemiş kabul edilir ve `onEach` tarafından fırlatılır. Sonuç olarak,
-kullanıcı stream'ine olan abonelik iptal edilir.
+Eğer `onError` atlanırsa, kullanıcı stream'indeki herhangi bir hata işlenmemiş
+kabul edilir ve `onEach` tarafından fırlatılır. Sonuç olarak, kullanıcı
+stream'ine olan abonelik iptal edilir.
 
 :::
 
@@ -312,8 +309,8 @@ nesneyle çalışmamıza olanak tanır.
 
 ## Login Page
 
-`LoginPage`, `LoginForm`'a bir `LoginCubit` örneği oluşturmaktan ve
-sağlamaktan sorumludur.
+`LoginPage`, `LoginForm`'a bir `LoginCubit` örneği oluşturmaktan ve sağlamaktan
+sorumludur.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_firebase_login/lib/login/view/login_page.dart"
@@ -323,8 +320,8 @@ sağlamaktan sorumludur.
 :::tip
 
 Bloc'ları/cubit'leri oluşturmayı, onların tüketildiği yerden ayrı tutmak çok
-önemlidir. Bu, mock örnekler enjekte etmenize ve görünümünüzü tek başına
-test etmenize olanak tanıyacaktır.
+önemlidir. Bu, mock örnekler enjekte etmenize ve görünümünüzü tek başına test
+etmenize olanak tanıyacaktır.
 
 :::
 
@@ -347,8 +344,8 @@ güncellendiğinde bilgilendirilir.
 
 ### Cubit
 
-`LoginCubit`, kullanıcıyı kimlik bilgileri veya Google ile oturum açma
-yoluyla giriş yaptırmak için `AuthenticationRepository`'ye bağımlıdır.
+`LoginCubit`, kullanıcıyı kimlik bilgileri veya Google ile oturum açma yoluyla
+giriş yaptırmak için `AuthenticationRepository`'ye bağımlıdır.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_firebase_login/lib/login/cubit/login_cubit.dart"
@@ -357,10 +354,10 @@ yoluyla giriş yaptırmak için `AuthenticationRepository`'ye bağımlıdır.
 
 :::note
 
-Burada bir `Bloc` yerine bir `Cubit` kullandık çünkü `LoginState` oldukça
-basit ve yereldir. Olaylar olmadan bile, bir durumdan diğerine geçişlere
-bakarak ne olduğuna dair oldukça iyi bir fikre sahip olabiliyoruz ve
-kodumuz çok daha basit ve özlü.
+Burada bir `Bloc` yerine bir `Cubit` kullandık çünkü `LoginState` oldukça basit
+ve yereldir. Olaylar olmadan bile, bir durumdan diğerine geçişlere bakarak ne
+olduğuna dair oldukça iyi bir fikre sahip olabiliyoruz ve kodumuz çok daha basit
+ve özlü.
 
 :::
 
@@ -380,11 +377,11 @@ sorumludur.
 
 ## Sign Up Page
 
-`SignUp` yapısı, `Login` yapısını yansıtır ve bir `SignUpPage`, `SignUpView`
-ve `SignUpCubit`'ten oluşur.
+`SignUp` yapısı, `Login` yapısını yansıtır ve bir `SignUpPage`, `SignUpView` ve
+`SignUpCubit`'ten oluşur.
 
-`SignUpPage`, yalnızca `SignUpForm`'a bir `SignUpCubit` örneği oluşturmaktan
-ve sağlamaktan sorumludur (tıpkı `LoginPage` gibi).
+`SignUpPage`, yalnızca `SignUpForm`'a bir `SignUpCubit` örneği oluşturmaktan ve
+sağlamaktan sorumludur (tıpkı `LoginPage` gibi).
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_firebase_login/lib/sign_up/view/sign_up_page.dart"
@@ -438,8 +435,8 @@ sorumludur.
 
 Bir kullanıcı başarıyla giriş yaptıktan veya kayıt olduktan sonra, `user`
 stream'i güncellenecek; bu da `AuthenticationBloc`'ta bir durum değişikliğini
-tetikleyecek ve `AppView`'in `HomePage` rotasını navigasyon yığınına
-eklemesine yol açacak.
+tetikleyecek ve `AppView`'in `HomePage` rotasını navigasyon yığınına eklemesine
+yol açacak.
 
 `HomePage`'den, kullanıcı profil bilgilerini görüntüleyebilir ve `AppBar`'daki
 çıkış simgesine dokunarak çıkış yapabilir.
@@ -452,8 +449,8 @@ eklemesine yol açacak.
 :::note
 
 `home` özelliği içinde, bu özelliğe özgü yeniden kullanılabilir bileşenler için
-`view` dizininin yanında bir `widgets` dizini oluşturuldu. Bu durumda, basit
-bir `Avatar` widget'ı dışa aktarılır ve `HomePage` içinde kullanılır.
+`view` dizininin yanında bir `widgets` dizini oluşturuldu. Bu durumda, basit bir
+`Avatar` widget'ı dışa aktarılır ve `HomePage` içinde kullanılır.
 
 :::
 
@@ -465,9 +462,8 @@ kapatır ve onu `LoginPage`'e geri yönlendirir.
 
 :::
 
-Bu noktada, Firebase kullanan oldukça sağlam bir giriş uygulamasına sahibiz
-ve Bloc Kütüphanesi'ni kullanarak sunum katmanımızı iş mantığı katmanından
-ayırdık.
+Bu noktada, Firebase kullanan oldukça sağlam bir giriş uygulamasına sahibiz ve
+Bloc Kütüphanesi'ni kullanarak sunum katmanımızı iş mantığı katmanından ayırdık.
 
 Bu örneğin tam kaynak kodu
 [burada](https://github.com/felangel/bloc/tree/master/examples/flutter_firebase_login)

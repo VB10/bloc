@@ -1,6 +1,8 @@
 ---
 title: Flutter Giriş
-description: Bloc ile Flutter giriş akışının nasıl oluşturulacağına dair kapsamlı bir rehber.
+description:
+  Bloc ile Flutter giriş akışının nasıl oluşturulacağına dair kapsamlı bir
+  rehber.
 sidebar:
   order: 4
 ---
@@ -21,8 +23,8 @@ oluşturacağız.
 - [BlocProvider](/tr/flutter-bloc-concepts#blocprovider), alt widget'larına bir
   bloc sağlayan Flutter widget'ı.
 - [context.read](/tr/flutter-bloc-concepts#contextread) ile olay ekleme.
-- [Equatable](/tr/faqs#when-to-use-equatable) ile gereksiz yeniden
-  oluşturmaları önleme.
+- [Equatable](/tr/faqs#when-to-use-equatable) ile gereksiz yeniden oluşturmaları
+  önleme.
 - [RepositoryProvider](/tr/flutter-bloc-concepts#repositoryprovider), alt
   widget'larına bir repository sağlayan Flutter widget'ı.
 - [BlocListener](/tr/flutter-bloc-concepts#bloclistener), bloc'taki durum
@@ -69,12 +71,13 @@ oluşturabiliriz:
 
 :::note
 
-`package:authentication_repository`, herhangi bir harici bağımlılığı olmayan
-saf bir Dart paketi olacaktır.
+`package:authentication_repository`, herhangi bir harici bağımlılığı olmayan saf
+bir Dart paketi olacaktır.
 
 :::
 
-Sırada, `packages/authentication_repository/lib/src/authentication_repository.dart`
+Sırada,
+`packages/authentication_repository/lib/src/authentication_repository.dart`
 içinde yer alacak `AuthenticationRepository` sınıfının kendisini uygulamamız
 gerekiyor.
 
@@ -136,9 +139,8 @@ Sırada, `user_repository` için `pubspec.yaml` oluşturacağız:
 `user_repository`, kullanıcı alanından sorumlu olacak ve mevcut kullanıcıyla
 etkileşim kurmak için API'ler sunacaktır.
 
-İlk tanımlayacağımız şey,
-`packages/user_repository/lib/src/models/user.dart` dosyasındaki kullanıcı
-modelidir:
+İlk tanımlayacağımız şey, `packages/user_repository/lib/src/models/user.dart`
+dosyasındaki kullanıcı modelidir:
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_login/packages/user_repository/lib/src/models/user.dart"
@@ -146,8 +148,7 @@ modelidir:
 />
 
 Basitlik adına, bir kullanıcının yalnızca bir `id` özelliği vardır, ancak
-pratikte `firstName`, `lastName`, `avatarUrl` gibi ek özelliklerimiz
-olabilir...
+pratikte `firstName`, `lastName`, `avatarUrl` gibi ek özelliklerimiz olabilir...
 
 :::note
 
@@ -167,8 +168,7 @@ oluşturabiliriz.
 />
 
 Modeller tanımlandığına göre, `UserRepository` sınıfını
-`packages/user_repository/lib/src/user_repository.dart` içinde
-uygulayabiliriz.
+`packages/user_repository/lib/src/user_repository.dart` içinde uygulayabiliriz.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_login/packages/user_repository/lib/src/user_repository.dart"
@@ -179,8 +179,8 @@ Bu basit örnek için, `UserRepository` mevcut kullanıcıyı alacak tek bir
 `getUser` metodu sunar. Bunu stub olarak yapıyoruz, ancak pratikte mevcut
 kullanıcıyı backend'den sorgulayacağımız yer burasıdır.
 
-`user_repository` paketi neredeyse bitti -- yapmamız gereken tek şey, dışa
-açık aktarımları tanımlayan `user_repository.dart` dosyasını
+`user_repository` paketi neredeyse bitti -- yapmamız gereken tek şey, dışa açık
+aktarımları tanımlayan `user_repository.dart` dosyasını
 `packages/user_repository/lib` içinde oluşturmaktır:
 
 <RemoteCode
@@ -188,8 +188,8 @@ açık aktarımları tanımlayan `user_repository.dart` dosyasını
 	title="packages/user_repository/lib/user_repository.dart"
 />
 
-`authentication_repository` ve `user_repository` paketleri tamamlandığına
-göre, Flutter uygulamasına odaklanabiliriz.
+`authentication_repository` ve `user_repository` paketleri tamamlandığına göre,
+Flutter uygulamasına odaklanabiliriz.
 
 ## Bağımlılıkları Kurma
 
@@ -211,8 +211,8 @@ Bağımlılıkları şu komutu çalıştırarak kurabiliriz:
 (`AuthenticationRepository` tarafından sunulan) tepki vermekten ve sunum
 katmanında tepki verebileceğimiz durumları yaymaktan sorumlu olacaktır.
 
-`AuthenticationBloc`'un uygulaması `lib/authentication` içindedir çünkü
-kimlik doğrulamayı uygulama katmanımızda bir özellik olarak ele alıyoruz.
+`AuthenticationBloc`'un uygulaması `lib/authentication` içindedir çünkü kimlik
+doğrulamayı uygulama katmanımızda bir özellik olarak ele alıyoruz.
 
 ```
 ├── lib
@@ -237,8 +237,8 @@ kullanın.
 
 ### authentication_event.dart
 
-`AuthenticationEvent` örnekleri, `AuthenticationBloc`'un girdisi olacak ve
-yeni `AuthenticationState` örnekleri yaymak için işlenip kullanılacaktır.
+`AuthenticationEvent` örnekleri, `AuthenticationBloc`'un girdisi olacak ve yeni
+`AuthenticationState` örnekleri yaymak için işlenip kullanılacaktır.
 
 Bu uygulamada, `AuthenticationBloc` iki farklı olaya tepki verecektir:
 
@@ -256,8 +256,8 @@ Sırada, `AuthenticationState`'e bir göz atalım.
 
 ### authentication_state.dart
 
-`AuthenticationState` örnekleri, `AuthenticationBloc`'un çıktısı olacak ve
-sunum katmanı tarafından tüketilecektir.
+`AuthenticationState` örnekleri, `AuthenticationBloc`'un çıktısı olacak ve sunum
+katmanı tarafından tüketilecektir.
 
 `AuthenticationState` sınıfının üç adlandırılmış kurucu (constructor) vardır:
 
@@ -276,14 +276,14 @@ sunum katmanı tarafından tüketilecektir.
 	title="lib/authentication/bloc/authentication_state.dart"
 />
 
-`AuthenticationEvent` ve `AuthenticationState` uygulamalarını gördüğümüze
-göre, şimdi `AuthenticationBloc`'a bir göz atalım.
+`AuthenticationEvent` ve `AuthenticationState` uygulamalarını gördüğümüze göre,
+şimdi `AuthenticationBloc`'a bir göz atalım.
 
 ### authentication_bloc.dart
 
-`AuthenticationBloc`, kullanıcının bir giriş sayfasında mı yoksa bir ana
-sayfada mı başlatılacağı gibi şeyleri belirlemek için kullanılan uygulamanın
-kimlik doğrulama durumunu yönetir.
+`AuthenticationBloc`, kullanıcının bir giriş sayfasında mı yoksa bir ana sayfada
+mı başlatılacağı gibi şeyleri belirlemek için kullanılan uygulamanın kimlik
+doğrulama durumunu yönetir.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_login/lib/authentication/bloc/authentication_bloc.dart"
@@ -291,8 +291,8 @@ kimlik doğrulama durumunu yönetir.
 />
 
 `AuthenticationBloc`, hem `AuthenticationRepository` hem de `UserRepository`'e
-bir bağımlılığa sahiptir ve başlangıç durumunu
-`AuthenticationState.unknown()` olarak tanımlar.
+bir bağımlılığa sahiptir ve başlangıç durumunu `AuthenticationState.unknown()`
+olarak tanımlar.
 
 Kurucu gövdesinde, `AuthenticationEvent` alt sınıfları, ilgili olay
 işleyicilerine eşlenir.
@@ -306,8 +306,8 @@ kullanır.
 `AuthenticationBloc` hem de `status` stream'i kapatıldığında onu iptal etmeyi
 üstlenir.
 
-`status` stream'i bir hata yayarsa, `addError`, hatayı ve stackTrace'i
-dinleyen herhangi bir `BlocObserver`'a iletir.
+`status` stream'i bir hata yayarsa, `addError`, hatayı ve stackTrace'i dinleyen
+herhangi bir `BlocObserver`'a iletir.
 
 :::caution
 
@@ -320,8 +320,8 @@ yapılan abonelik iptal edilecektir.
 :::tip
 
 Bir [`BlocObserver`](/tr/bloc-concepts/#blocobserver-1), özellikle analitik ve
-çökme raporlama bağlamında Bloc olaylarını, hatalarını ve durum
-değişikliklerini loglamak için harikadır.;
+çökme raporlama bağlamında Bloc olaylarını, hatalarını ve durum değişikliklerini
+loglamak için harikadır.;
 
 :::
 
@@ -353,8 +353,8 @@ Sırada, varsayılan `main.dart`'ı şununla değiştirebiliriz:
 
 `app.dart`, `App` ve `AppView` olmak üzere iki bölüme ayrılmıştır. `App`,
 `AppView` tarafından tüketilecek olan `AuthenticationBloc`'u
-oluşturmaktan/sağlamaktan sorumludur. Bu ayrıştırma, daha sonra hem `App`
-hem de `AppView` widget'larını kolayca test etmemizi sağlayacaktır.
+oluşturmaktan/sağlamaktan sorumludur. Bu ayrıştırma, daha sonra hem `App` hem de
+`AppView` widget'larını kolayca test etmemizi sağlayacaktır.
 
 :::
 
@@ -367,8 +367,8 @@ kullanılır.
 :::
 
 Varsayılan olarak, `BlocProvider` lazy'dir ve Bloc'a ilk kez erişilene kadar
-`create`'i çağırmaz. `AuthenticationBloc`'un her zaman
-`AuthenticationStatus` stream'ine hemen abone olması gerektiğinden
+`create`'i çağırmaz. `AuthenticationBloc`'un her zaman `AuthenticationStatus`
+stream'ine hemen abone olması gerektiğinden
 (`AuthenticationSubscriptionRequested` olayı aracılığıyla), `lazy: false`
 ayarlayarak bu davranışı açıkça devre dışı bırakabiliriz.
 
@@ -380,9 +380,8 @@ için `BlocListener` kullanır.
 
 ## Splash
 
-Splash özelliği, kullanıcının kimliğinin doğrulanıp doğrulanmadığını
-belirlerken uygulama başlatılır başlatılmaz render edilecek basit bir görünüm
-içerecektir.
+Splash özelliği, kullanıcının kimliğinin doğrulanıp doğrulanmadığını belirlerken
+uygulama başlatılır başlatılmaz render edilecek basit bir görünüm içerecektir.
 
 ```
 lib
@@ -399,8 +398,8 @@ lib
 
 :::tip
 
-`SplashPage`, `Navigator.of(context).push(SplashPage.route())` aracılığıyla
-ona kolayca yönlendirmeyi sağlayan statik bir `Route` sunar;
+`SplashPage`, `Navigator.of(context).push(SplashPage.route())` aracılığıyla ona
+kolayca yönlendirmeyi sağlayan statik bir `Route` sunar;
 
 :::
 
@@ -431,8 +430,8 @@ girmesine izin verir.
 ### Login Modelleri
 
 `username` ve `password` için yeniden kullanılabilir ve standart modeller
-oluşturmak amacıyla
-[`package:formz`](https://pub.dev/packages/formz) kullanıyoruz.
+oluşturmak amacıyla [`package:formz`](https://pub.dev/packages/formz)
+kullanıyoruz.
 
 #### Username
 
@@ -442,8 +441,8 @@ oluşturmak amacıyla
 />
 
 Basitlik adına, kullanıcı adının boş olmadığından emin olmak için yalnızca
-doğrulama yapıyoruz, ancak pratikte özel karakter kullanımı, uzunluk vb.
-zorunlu kılabilirsiniz...
+doğrulama yapıyoruz, ancak pratikte özel karakter kullanımı, uzunluk vb. zorunlu
+kılabilirsiniz...
 
 #### Password
 
@@ -452,13 +451,12 @@ zorunlu kılabilirsiniz...
 	title="lib/login/models/password.dart"
 />
 
-Yine, parolanın boş olmadığından emin olmak için basit bir kontrol
-yapıyoruz.
+Yine, parolanın boş olmadığından emin olmak için basit bir kontrol yapıyoruz.
 
 #### Models Barrel
 
-Daha önce olduğu gibi, `Username` ve `Password` modellerini tek bir içe
-aktarma ile içe aktarmayı kolaylaştıran bir `models.dart` barrel'ı vardır.
+Daha önce olduğu gibi, `Username` ve `Password` modellerini tek bir içe aktarma
+ile içe aktarmayı kolaylaştıran bir `models.dart` barrel'ı vardır.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_login/lib/login/models/models.dart"
@@ -495,9 +493,9 @@ içerecektir.
 
 :::note
 
-`Username` ve `Password` modelleri `LoginState`'in bir parçası olarak
-kullanılır ve status da [package:formz](https://pub.dev/packages/formz)
-paketinin bir parçasıdır.
+`Username` ve `Password` modelleri `LoginState`'in bir parçası olarak kullanılır
+ve status da [package:formz](https://pub.dev/packages/formz) paketinin bir
+parçasıdır.
 
 :::
 
@@ -512,8 +510,8 @@ formun doğrulanmasını ve gönderilmesini ele almaktan sorumludur.
 />
 
 `LoginBloc`, form gönderildiğinde `logIn`'i çağırdığı için
-`AuthenticationRepository`'e bir bağımlılığa sahiptir. Bloc'un başlangıç
-durumu `pure`'dur, yani ne girdilere ne de forma dokunulmuş veya etkileşime
+`AuthenticationRepository`'e bir bağımlılığa sahiptir. Bloc'un başlangıç durumu
+`pure`'dur, yani ne girdilere ne de forma dokunulmuş veya etkileşime
 geçilmiştir.
 
 `username` veya `password` her değiştiğinde, bloc, `Username`/`Password`
@@ -527,8 +525,8 @@ Sırada, `LoginPage` ve `LoginForm`'a bir göz atalım.
 
 ### Login Page
 
-`LoginPage`, `Route`'u sunmaktan ve ayrıca `LoginBloc`'u oluşturup
-`LoginForm`'a sağlamaktan sorumludur.
+`LoginPage`, `Route`'u sunmaktan ve ayrıca `LoginBloc`'u oluşturup `LoginForm`'a
+sağlamaktan sorumludur.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_login/lib/login/view/login_page.dart"
@@ -544,20 +542,20 @@ Sırada, `LoginPage` ve `LoginForm`'a bir göz atalım.
 
 ### Login Form
 
-`LoginForm`, `LoginBloc`'u kullanıcı olayları hakkında bilgilendirmeyi
-yönetir ve ayrıca `BlocBuilder` ve `BlocListener` kullanarak durum
-değişikliklerine yanıt verir.
+`LoginForm`, `LoginBloc`'u kullanıcı olayları hakkında bilgilendirmeyi yönetir
+ve ayrıca `BlocBuilder` ve `BlocListener` kullanarak durum değişikliklerine
+yanıt verir.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_login/lib/login/view/login_form.dart"
 	title="lib/login/view/login_form.dart"
 />
 
-`BlocListener`, giriş gönderimi başarısız olursa bir `SnackBar` göstermek
-için kullanılır. Ek olarak, `context.select`, gereksiz yeniden oluşturmaları
+`BlocListener`, giriş gönderimi başarısız olursa bir `SnackBar` göstermek için
+kullanılır. Ek olarak, `context.select`, gereksiz yeniden oluşturmaları
 önleyerek her widget için `LoginState`'in belirli bölümlerine verimli bir
-şekilde erişmek için kullanılır. `onChanged` geri çağrısı, kullanıcı
-adı/parola değişikliklerini `LoginBloc`'a bildirmek için kullanılır.
+şekilde erişmek için kullanılır. `onChanged` geri çağrısı, kullanıcı adı/parola
+değişikliklerini `LoginBloc`'a bildirmek için kullanılır.
 
 `_LoginButton` widget'ı yalnızca formun durumu geçerliyse etkindir ve form
 gönderilirken yerinde bir `CircularProgressIndicator` gösterilir.
@@ -565,8 +563,8 @@ gönderilirken yerinde bir `CircularProgressIndicator` gösterilir.
 ## Home
 
 Başarılı bir `logIn` isteği üzerine, `AuthenticationBloc`'un durumu
-`authenticated`'a değişecek ve kullanıcı, kullanıcının `id`'sini ve çıkış
-yapmak için bir düğmeyi görüntülediğimiz `HomePage`'e yönlendirilecektir.
+`authenticated`'a değişecek ve kullanıcı, kullanıcının `id`'sini ve çıkış yapmak
+için bir düğmeyi görüntülediğimiz `HomePage`'e yönlendirilecektir.
 
 ```
 ├── lib
@@ -579,10 +577,10 @@ yapmak için bir düğmeyi görüntülediğimiz `HomePage`'e yönlendirilecektir
 ### Home Page
 
 `HomePage`, mevcut kullanıcı id'sine
-`context.select((AuthenticationBloc bloc) => bloc.state.user.id)`
-aracılığıyla erişebilir ve bunu bir `Text` widget'ı aracılığıyla
-görüntüler. Ek olarak, çıkış düğmesine dokunulduğunda, `AuthenticationBloc`'a
-bir `AuthenticationLogoutPressed` olayı eklenir.
+`context.select((AuthenticationBloc bloc) => bloc.state.user.id)` aracılığıyla
+erişebilir ve bunu bir `Text` widget'ı aracılığıyla görüntüler. Ek olarak, çıkış
+düğmesine dokunulduğunda, `AuthenticationBloc`'a bir
+`AuthenticationLogoutPressed` olayı eklenir.
 
 <RemoteCode
 	url="https://raw.githubusercontent.com/felangel/bloc/master/examples/flutter_login/lib/home/view/home_page.dart"
@@ -591,8 +589,8 @@ bir `AuthenticationLogoutPressed` olayı eklenir.
 
 :::note
 
-`context.select((AuthenticationBloc bloc) => bloc.state.user.id)`,
-kullanıcı id'si değişirse güncellemeleri tetikleyecektir.
+`context.select((AuthenticationBloc bloc) => bloc.state.user.id)`, kullanıcı
+id'si değişirse güncellemeleri tetikleyecektir.
 
 :::
 

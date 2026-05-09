@@ -68,9 +68,9 @@ referans yerine değerlere göre değerlendirildiğinden emin olmak için sıras
 
 <EquatableEmitSnippet />
 
-Yukarıdaki senaryoda, eğer `StateA` `Equatable`'dan miras alıyorsa yalnızca
-tek bir durum değişikliği gerçekleşir (ikinci yayım göz ardı edilir). Genel
-olarak, kodunuzu yeniden oluşturma sayısını azaltacak şekilde optimize etmek
+Yukarıdaki senaryoda, eğer `StateA` `Equatable`'dan miras alıyorsa yalnızca tek
+bir durum değişikliği gerçekleşir (ikinci yayım göz ardı edilir). Genel olarak,
+kodunuzu yeniden oluşturma sayısını azaltacak şekilde optimize etmek
 istiyorsanız `Equatable` kullanmalısınız. Aynı durumun arka arkaya birden fazla
 geçiş tetiklemesini istiyorsanız `Equatable` kullanmamalısınız.
 
@@ -92,9 +92,9 @@ alabilirim?
 
 💡 **Cevap**:
 
-Bu büyük ölçüde bloc durumunun nasıl modellendiğine bağlıdır. Bir hata
-olduğunda bile verinin korunması gereken durumlarda tek bir durum sınıfı
-kullanmayı düşünün.
+Bu büyük ölçüde bloc durumunun nasıl modellendiğine bağlıdır. Bir hata olduğunda
+bile verinin korunması gereken durumlarda tek bir durum sınıfı kullanmayı
+düşünün.
 
 <SingleStateSnippet />
 
@@ -151,8 +151,8 @@ kolaylaştırmak için dahili olarak `provider`'ı kullanır.
 
 ## BlocProvider.of() Bloc'u Bulamıyor
 
-❔ **Soru**: `BlocProvider.of(context)` kullanırken bloc'u bulamıyor. Bunu
-nasıl düzeltebilirim?
+❔ **Soru**: `BlocProvider.of(context)` kullanırken bloc'u bulamıyor. Bunu nasıl
+düzeltebilirim?
 
 💡 **Cevap**: Bir bloc'a, sağlandığı context içerisinden erişemezsiniz. Bu
 yüzden `BlocProvider.of()`'un bir alt `BuildContext` içinde çağrıldığından emin
@@ -201,12 +201,12 @@ dahili bir `_UserChanged` olayı ekler.
 <BlocInternalAddEventSnippet />
 
 Dahili bir olay ekleyerek, birden fazla `_UserChanged` olayının nasıl
-işleneceğini belirlemek için olay için özel bir `transformer` da
-belirtebiliriz -- varsayılan olarak eş zamanlı olarak işlenirler.
+işleneceğini belirlemek için olay için özel bir `transformer` da belirtebiliriz
+-- varsayılan olarak eş zamanlı olarak işlenirler.
 
-Dahili olayların özel (private) olması şiddetle önerilir. Bu, belirli bir
-olayın yalnızca bloc'un kendisi içinde kullanıldığını açıkça belirtmenin bir
-yoludur ve harici bileşenlerin olay hakkında bilgi sahibi olmasını engeller.
+Dahili olayların özel (private) olması şiddetle önerilir. Bu, belirli bir olayın
+yalnızca bloc'un kendisi içinde kullanıldığını açıkça belirtmenin bir yoludur ve
+harici bileşenlerin olay hakkında bilgi sahibi olmasını engeller.
 
 <BlocInternalEventSnippet />
 

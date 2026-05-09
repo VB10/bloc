@@ -27,10 +27,10 @@ konumsal parametre yerine isimli parametreye yeniden düzenlendi.
 
 ##### Gerekçe
 
-Bu, ilk uygulama sırasında gözden kaçtı ve yukarıdaki bozucu değişiklik,
-API'yi `HydratedBloc` ve `HydratedCubit` arasında tutarlı olacak şekilde
-ayarlar. Daha fazla bilgi için
-[#4537](https://github.com/felangel/bloc/pull/4537) adresine bakın.
+Bu, ilk uygulama sırasında gözden kaçtı ve yukarıdaki bozucu değişiklik, API'yi
+`HydratedBloc` ve `HydratedCubit` arasında tutarlı olacak şekilde ayarlar. Daha
+fazla bilgi için [#4537](https://github.com/felangel/bloc/pull/4537) adresine
+bakın.
 
 **v10.x.x**
 
@@ -221,8 +221,8 @@ geliştiriciler için ek karmaşıklık getirdi. Aynı etkiyi elde etmek için g
 iç içe geçme miktarını ve kod satır sayısını artırmanın yanı sıra,
 `BlocOverrides` API'si, geliştiricilerin Dart'taki
 [Zone'lar](https://api.dart.dev/stable/2.17.6/dart-async/Zone-class.html)
-hakkında sağlam bir anlayışa sahip olmasını gerektiriyordu. `Zone`'lar
-yeni başlayanlara dostça bir kavram değildir ve Zone'ların nasıl çalıştığını
+hakkında sağlam bir anlayışa sahip olmasını gerektiriyordu. `Zone`'lar yeni
+başlayanlara dostça bir kavram değildir ve Zone'ların nasıl çalıştığını
 anlayamamak hatalara (başlatılmamış observer'lar, transformer'lar, storage
 örnekleri gibi) yol açabilirdi.
 
@@ -242,9 +242,9 @@ zone, `GestureBinding.initInstances` nedeniyle gesture olaylarının (örneğin,
 kullanılmasının neden olduğu birçok sorundan yalnızca biridir.
 
 Ek olarak, Flutter, Zone'ları çatallamayı/manipüle etmeyi içeren birçok şeyi
-arka planda yapar (özellikle test çalıştırırken), bu da beklenmeyen
-davranışlara yol açabilir (ve birçok durumda geliştiricinin kontrolü dışındaki
-davranışlara — aşağıdaki sorunlara bakın).
+arka planda yapar (özellikle test çalıştırırken), bu da beklenmeyen davranışlara
+yol açabilir (ve birçok durumda geliştiricinin kontrolü dışındaki davranışlara —
+aşağıdaki sorunlara bakın).
 
 [runZoned](https://api.flutter.dev/flutter/dart-async/runZoned.html) kullanımı
 nedeniyle, `BlocOverrides` API'sine geçiş, Flutter'da (özellikle Widget ve
@@ -388,10 +388,11 @@ BlocOverrides.runZoned(
 
 :::note[Ne Değişti?]
 
-bloc v8.0.0'da, `BlocUnhandledErrorException` kaldırıldı. Ek olarak, yakalanmamış
-tüm istisnalar her zaman `onError`'a raporlanır ve yeniden fırlatılır (debug
-veya release modundan bağımsız olarak). `addError` API'si, hataları `onError`'a
-raporlar, ancak raporlanan hataları yakalanmamış istisnalar olarak ele almaz.
+bloc v8.0.0'da, `BlocUnhandledErrorException` kaldırıldı. Ek olarak,
+yakalanmamış tüm istisnalar her zaman `onError`'a raporlanır ve yeniden
+fırlatılır (debug veya release modundan bağımsız olarak). `addError` API'si,
+hataları `onError`'a raporlar, ancak raporlanan hataları yakalanmamış istisnalar
+olarak ele almaz.
 
 :::
 
@@ -412,15 +413,15 @@ açıyordu (özellikle birim testler yazarken).
 v8.0.0'da, hataları raporlamak için `addError` güvenli bir şekilde
 kullanılabilir ve `blocTest`, hataların raporlandığını doğrulamak için
 kullanılabilir. Tüm hatalar hala `onError`'a raporlanır, ancak yalnızca
-yakalanmamış istisnalar yeniden fırlatılır (debug veya release modundan
-bağımsız olarak).
+yakalanmamış istisnalar yeniden fırlatılır (debug veya release modundan bağımsız
+olarak).
 
 #### ❗🧹 `BlocObserver`'ı abstract yapma
 
 :::note[Ne Değişti?]
 
-bloc v8.0.0'da, `BlocObserver`, bir `BlocObserver` örneğinin
-oluşturulamayacağı anlamına gelen bir `abstract` sınıfa dönüştürüldü.
+bloc v8.0.0'da, `BlocObserver`, bir `BlocObserver` örneğinin oluşturulamayacağı
+anlamına gelen bir `abstract` sınıfa dönüştürüldü.
 
 :::
 
@@ -483,8 +484,8 @@ sonuçlanır.
 ##### Gerekçe
 
 Daha önce, kapalı bir bloc içinde `emit` çağırmak mümkündü ve hiçbir durum
-değişikliği olmazdı, ancak neyin yanlış gittiğine dair bir gösterge de yoktu,
-bu da hata ayıklamayı zorlaştırıyordu. Bu senaryoyu daha görünür kılmak için,
+değişikliği olmazdı, ancak neyin yanlış gittiğine dair bir gösterge de yoktu, bu
+da hata ayıklamayı zorlaştırıyordu. Bu senaryoyu daha görünür kılmak için,
 v8.0.0'da kapalı bir bloc içinde `emit` çağırmak, yakalanmamış bir istisna
 olarak raporlanan ve `onError`'a iletilen bir `StateError` fırlatacaktır.
 
@@ -625,9 +626,9 @@ bloc v7.2.0'da, `mapEventToState`, `on<Event>` lehine kullanımdan kaldırıldı
 [[Proposal] Replace mapEventToState with on\<Event\> in Bloc](https://github.com/felangel/bloc/issues/2526)
 kapsamında tanıtıldı.
 [Dart'taki bir sorun](https://github.com/dart-lang/sdk/issues/44616) nedeniyle
-iç içe geçmiş asenkron generator'larla (`async*`) çalışırken `state`'in değerinin
-ne olacağı her zaman açık olmuyor. Sorunu çözmenin yolları olsa da, bloc
-kütüphanesinin temel ilkelerinden biri öngörülebilir olmaktır. `on<Event>`
+iç içe geçmiş asenkron generator'larla (`async*`) çalışırken `state`'in
+değerinin ne olacağı her zaman açık olmuyor. Sorunu çözmenin yolları olsa da,
+bloc kütüphanesinin temel ilkelerinden biri öngörülebilir olmaktır. `on<Event>`
 API'si, kütüphaneyi kullanmayı mümkün olduğunca güvenli hale getirmek ve durum
 değişiklikleri söz konusu olduğunda herhangi bir belirsizliği ortadan kaldırmak
 için oluşturuldu.
@@ -795,9 +796,9 @@ kaldırılacak.
 
 ##### Gerekçe
 
-`Bloc` üzerindeki `stream` getter'ı, durumların giden stream'ini override
-etmeyi kolaylaştırır, bu nedenle ayrı bir `transformTransitions` API'sini
-sürdürmek artık değerli değildir.
+`Bloc` üzerindeki `stream` getter'ı, durumların giden stream'ini override etmeyi
+kolaylaştırır, bu nedenle ayrı bir `transformTransitions` API'sini sürdürmek
+artık değerli değildir.
 
 **Özet**
 
@@ -827,11 +828,10 @@ Stream<State> get stream => super.stream.debounceTime(const Duration(millisecond
 
 ##### Gerekçe
 
-Bir geliştirici olarak, bloc'lar ve cubit'ler arasındaki ilişki biraz
-tuhaftı. Cubit ilk tanıtıldığında, işlevselliğin bir alt kümesine sahip
-olduğu ve bloc'ların yalnızca Cubit'i extend edip ek API'ler tanımlaması
-mantıklı geldiği için bloc'lar için temel sınıf olarak başladı. Bu birkaç
-dezavantajla geldi:
+Bir geliştirici olarak, bloc'lar ve cubit'ler arasındaki ilişki biraz tuhaftı.
+Cubit ilk tanıtıldığında, işlevselliğin bir alt kümesine sahip olduğu ve
+bloc'ların yalnızca Cubit'i extend edip ek API'ler tanımlaması mantıklı geldiği
+için bloc'lar için temel sınıf olarak başladı. Bu birkaç dezavantajla geldi:
 
 - Tüm API'lerin doğruluk için ya cubit kabul edecek şekilde yeniden
   adlandırılması ya da hiyerarşik olarak yanlış olsa da tutarlılık için bloc
@@ -938,8 +938,8 @@ cubit.stream.listen((state) {...});
 
 ##### Gerekçe
 
-`setUp` içinde dinamik olarak güncellenebilen değiştirilebilir bir seed
-değerine sahip olmayı desteklemek için, `seed` bir fonksiyon döndürür.
+`setUp` içinde dinamik olarak güncellenebilen değiştirilebilir bir seed değerine
+sahip olmayı desteklemek için, `seed` bir fonksiyon döndürür.
 
 **Özet**
 
@@ -968,8 +968,8 @@ blocTest(
 ##### Gerekçe
 
 `setUp` içinde dinamik olarak güncellenebilen değiştirilebilir bir beklentiye
-sahip olmayı desteklemek için, `expect` bir fonksiyon döndürür. `expect`
-ayrıca `Matchers` destekler.
+sahip olmayı desteklemek için, `expect` bir fonksiyon döndürür. `expect` ayrıca
+`Matchers` destekler.
 
 **Özet**
 
@@ -1005,8 +1005,8 @@ blocTest(
 ##### Gerekçe
 
 `setUp` içinde dinamik olarak güncellenebilen değiştirilebilir bir errors'a
-sahip olmayı desteklemek için, `errors` bir fonksiyon döndürür. `errors`
-ayrıca `Matchers` destekler.
+sahip olmayı desteklemek için, `errors` bir fonksiyon döndürür. `errors` ayrıca
+`Matchers` destekler.
 
 **Özet**
 
@@ -1042,9 +1042,9 @@ blocTest(
 ##### Gerekçe
 
 Çeşitli temel API'lerin stub'lanmasını desteklemek için, `MockBloc` ve
-`MockCubit`, `bloc_test` paketinin bir parçası olarak dışa aktarılır. Daha
-önce, hem `Bloc` hem de `Cubit` örnekleri için `MockBloc` kullanılması
-gerekiyordu, bu da sezgisel değildi.
+`MockCubit`, `bloc_test` paketinin bir parçası olarak dışa aktarılır. Daha önce,
+hem `Bloc` hem de `Cubit` örnekleri için `MockBloc` kullanılması gerekiyordu, bu
+da sezgisel değildi.
 
 **Özet**
 
@@ -1162,9 +1162,8 @@ BlocConsumer(
 
 `package:hydrated_bloc`'u saf bir Dart paketi yapmak için,
 [package:path_provider](https://pub.dev/packages/path_provider) bağımlılığı
-kaldırıldı ve `HydratedStorage.build` çağrılırken `storageDirectory`
-parametresi zorunludur ve artık varsayılan olarak `getTemporaryDirectory`
-değildir.
+kaldırıldı ve `HydratedStorage.build` çağrılırken `storageDirectory` parametresi
+zorunludur ve artık varsayılan olarak `getTemporaryDirectory` değildir.
 
 **Özet**
 
@@ -1194,12 +1193,12 @@ HydratedBloc.storage = await HydratedStorage.build(
 
 ##### Gerekçe
 
-`context.read`, `context.watch` ve `context.select`, birçok geliştiricinin
-aşina olduğu mevcut [provider](https://pub.dev/packages/provider) API'si ile
-uyumlu olmak ve topluluk tarafından dile getirilen sorunları gidermek için
-eklendi. Kodun güvenliğini artırmak ve tutarlılığı korumak için, `context.bloc`,
-doğrudan `build` içinde kullanılıp kullanılmadığına bağlı olarak `context.read`
-veya `context.watch` ile değiştirilebileceği için kullanımdan kaldırıldı.
+`context.read`, `context.watch` ve `context.select`, birçok geliştiricinin aşina
+olduğu mevcut [provider](https://pub.dev/packages/provider) API'si ile uyumlu
+olmak ve topluluk tarafından dile getirilen sorunları gidermek için eklendi.
+Kodun güvenliğini artırmak ve tutarlılığı korumak için, `context.bloc`, doğrudan
+`build` içinde kullanılıp kullanılmadığına bağlı olarak `context.read` veya
+`context.watch` ile değiştirilebileceği için kullanımdan kaldırıldı.
 
 **context.watch**
 
@@ -1231,8 +1230,8 @@ talebini karşılar.
 final name = context.select((UserBloc bloc) => bloc.state.user.name);
 ```
 
-Yukarıdaki kod parçacığı, widget'ı yalnızca mevcut kullanıcının adı
-değiştiğinde erişmemize ve yeniden oluşturmamıza olanak tanır.
+Yukarıdaki kod parçacığı, widget'ı yalnızca mevcut kullanıcının adı değiştiğinde
+erişmemize ve yeniden oluşturmamıza olanak tanır.
 
 **context.read**
 
@@ -1281,8 +1280,8 @@ Widget build(BuildContext context) {
 tüm widget'ın yeniden oluşturulmasıyla sonuçlanacaktır. Tüm widget'ın yeniden
 oluşturulması gerekmiyorsa, ya yeniden oluşturulması gereken kısımları sarmak
 için `BlocBuilder` kullanın, yeniden oluşturmaları kapsamlandırmak için
-`context.watch` ile bir `Builder` kullanın ya da widget'ı daha küçük
-widget'lara bölün.
+`context.watch` ile bir `Builder` kullanın ya da widget'ı daha küçük widget'lara
+bölün.
 
 :::
 
@@ -1341,8 +1340,8 @@ Widget build(BuildContext context) {
 }
 ```
 
-?> Bir olay eklemek için bir bloc'a erişiyorsanız, ihtiyaç duyulan
-callback'te `context.read` kullanarak bloc erişimini gerçekleştirin.
+?> Bir olay eklemek için bir bloc'a erişiyorsanız, ihtiyaç duyulan callback'te
+`context.read` kullanarak bloc erişimini gerçekleştirin.
 
 **v6.0.x**
 
@@ -1407,9 +1406,9 @@ class MyBlocObserver extends BlocObserver {
 
 Bu değişiklik, `Bloc` ve `Cubit`'i `Dart`'taki yerleşik `Stream` davranışıyla
 uyumlu hale getirmek için yapıldı. Ek olarak, `Cubit` bağlamında eski davranışa
-uymak, `flutter_bloc` ve `bloc_test` gibi diğer paketlerin dahili
-uygulamalarını gereksiz yere karmaşıklaştıran birçok istenmeyen yan etkiye yol
-açtı (`skip(1)` vb. gerektiriyordu).
+uymak, `flutter_bloc` ve `bloc_test` gibi diğer paketlerin dahili uygulamalarını
+gereksiz yere karmaşıklaştıran birçok istenmeyen yan etkiye yol açtı (`skip(1)`
+vb. gerektiriyordu).
 
 **v5.x.x**
 
@@ -1510,8 +1509,8 @@ blocTest<CounterBloc, int>(
 
 ##### Gerekçe
 
-`bloc` ve `cubit` örnekleri artık yeni abonelikler için son durumu yaymadığından,
-`skip`'in varsayılan olarak `1` olması gerekli değildi.
+`bloc` ve `cubit` örnekleri artık yeni abonelikler için son durumu
+yaymadığından, `skip`'in varsayılan olarak `1` olması gerekli değildi.
 
 **v5.x.x**
 
@@ -1683,9 +1682,9 @@ BlocConsumer(
 Bir geliştirici olarak, bloc oluştururken `initialState`'i override etmek
 zorunda kalmak iki ana soruna neden olur:
 
-- Bloc'un `initialState`'i dinamik olabilir ve daha sonraki bir noktada
-  (bloc'un kendisi dışında bile) referans alınabilir. Bazı açılardan, bu
-  dahili bloc bilgilerinin UI katmanına sızdırılması olarak görülebilir.
+- Bloc'un `initialState`'i dinamik olabilir ve daha sonraki bir noktada (bloc'un
+  kendisi dışında bile) referans alınabilir. Bazı açılardan, bu dahili bloc
+  bilgilerinin UI katmanına sızdırılması olarak görülebilir.
 - Ayrıntılıdır.
 
 **v4.x.x**
@@ -1709,22 +1708,22 @@ class CounterBloc extends Bloc<CounterEvent, int> {
 }
 ```
 
-?> Daha fazla bilgi için
-[#1304](https://github.com/felangel/bloc/issues/1304) sayısına göz atın
+?> Daha fazla bilgi için [#1304](https://github.com/felangel/bloc/issues/1304)
+sayısına göz atın
 
 #### ❗BlocDelegate, BlocObserver olarak yeniden adlandırıldı
 
 ##### Gerekçe
 
 `BlocDelegate` adı, sınıfın oynadığı rolün doğru bir tanımı değildi.
-`BlocDelegate`, sınıfın aktif bir rol oynadığını ima eder, oysa
-gerçekte `BlocDelegate`'in amaçlanan rolü, basitçe bir uygulamadaki tüm
-bloc'ları gözlemleyen pasif bir bileşen olmaktı.
+`BlocDelegate`, sınıfın aktif bir rol oynadığını ima eder, oysa gerçekte
+`BlocDelegate`'in amaçlanan rolü, basitçe bir uygulamadaki tüm bloc'ları
+gözlemleyen pasif bir bileşen olmaktı.
 
 :::note
 
-İdeal olarak, `BlocObserver` içinde işlenen kullanıcıya yönelik bir
-işlevsellik veya özellik olmamalıdır.
+İdeal olarak, `BlocObserver` içinde işlenen kullanıcıya yönelik bir işlevsellik
+veya özellik olmamalıdır.
 
 :::
 
@@ -1749,10 +1748,9 @@ class MyBlocObserver extends BlocObserver {
 ##### Gerekçe
 
 `BlocSupervisor`, geliştiricilerin yalnızca özel bir `BlocDelegate`
-belirtebilmek için bilmesi ve etkileşime girmesi gereken başka bir
-bileşendi. `BlocObserver`'a yapılan değişiklikle, observer'ı doğrudan
-bloc'un kendisinde ayarlamanın geliştirici deneyimini iyileştirdiğini
-hissettik.
+belirtebilmek için bilmesi ve etkileşime girmesi gereken başka bir bileşendi.
+`BlocObserver`'a yapılan değişiklikle, observer'ı doğrudan bloc'un kendisinde
+ayarlamanın geliştirici deneyimini iyileştirdiğini hissettik.
 
 ?> Bu değişiklik aynı zamanda `HydratedStorage` gibi diğer bloc eklentilerini
 `BlocObserver`'dan ayırmamızı da sağladı.
@@ -1789,9 +1787,9 @@ BlocBuilder<MyBloc, MyState>(
 
 `condition` adı pek açıklayıcı veya bariz değildir ve daha da önemlisi, bir
 `BlocConsumer` ile etkileşimde bulunulduğunda API tutarsız hale geldi çünkü
-geliştiriciler iki koşul sağlayabilirler (biri `builder` için ve biri
-`listener` için). Sonuç olarak, `BlocConsumer` API'si bir `buildWhen` ve
-`listenWhen` açığa çıkardı.
+geliştiriciler iki koşul sağlayabilirler (biri `builder` için ve biri `listener`
+için). Sonuç olarak, `BlocConsumer` API'si bir `buildWhen` ve `listenWhen` açığa
+çıkardı.
 
 ```dart
 BlocConsumer<MyBloc, MyState>(
@@ -1923,10 +1921,10 @@ HydratedBloc.storage = await HydratedStorage.build();
 ##### Gerekçe
 
 Daha önce, geliştiricilerin `HydratedBloc` örneklerini ayarlamak için manuel
-olarak `super.initialState ?? DefaultInitialState()` çağırması gerekiyordu.
-Bu hantal ve ayrıntılıdır ve ayrıca `bloc`'taki `initialState`'e yönelik
-bozucu değişikliklerle uyumsuzdur. Sonuç olarak, v5.0.0'da `HydratedBloc`
-başlatma, normal `Bloc` başlatma ile aynıdır.
+olarak `super.initialState ?? DefaultInitialState()` çağırması gerekiyordu. Bu
+hantal ve ayrıntılıdır ve ayrıca `bloc`'taki `initialState`'e yönelik bozucu
+değişikliklerle uyumsuzdur. Sonuç olarak, v5.0.0'da `HydratedBloc` başlatma,
+normal `Bloc` başlatma ile aynıdır.
 
 **v4.0.0**
 

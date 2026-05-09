@@ -40,8 +40,8 @@ diğer asenkron veri kaynaklarıyla etkileşim kurar.
 
 ### Veri Sağlayıcı
 
-Veri sağlayıcının sorumluluğu, ham veri sağlamaktır. Veri sağlayıcı genel ve
-çok yönlü olmalıdır.
+Veri sağlayıcının sorumluluğu, ham veri sağlamaktır. Veri sağlayıcı genel ve çok
+yönlü olmalıdır.
 
 Veri sağlayıcı genellikle
 [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
@@ -58,9 +58,9 @@ sağlayıcının etrafındaki bir sarmalayıcıdır.
 
 <RepositorySnippet />
 
-Gördüğünüz gibi, repository katmanımız birden fazla veri sağlayıcıyla
-etkileşime girebilir ve sonucu iş mantığı katmanına teslim etmeden önce veri
-üzerinde dönüşümler gerçekleştirebilir.
+Gördüğünüz gibi, repository katmanımız birden fazla veri sağlayıcıyla etkileşime
+girebilir ve sonucu iş mantığı katmanına teslim etmeden önce veri üzerinde
+dönüşümler gerçekleştirebilir.
 
 ## İş Mantığı Katmanı
 
@@ -71,8 +71,7 @@ veriyi almak amacıyla bir veya daha fazla repository'ye bağlı olabilir.
 İş mantığı katmanını, kullanıcı arayüzü (sunum katmanı) ile veri katmanı
 arasındaki köprü olarak düşünün. İş mantığı katmanı, sunum katmanından gelen
 olaylar/aksiyonlar hakkında bilgilendirilir ve ardından sunum katmanının
-tüketmesi için yeni bir durum oluşturmak amacıyla repository ile iletişim
-kurar.
+tüketmesi için yeni bir durum oluşturmak amacıyla repository ile iletişim kurar.
 
 <BusinessLogicComponentSnippet />
 
@@ -89,8 +88,8 @@ da) daha büyük bir sorunu vardır: iki bloc arasında bir bağımlılık yarat
 
 Genel olarak, aynı mimari katmandaki iki varlık arasındaki kardeş bağımlılıklar,
 bakımı zor olan sıkı bir bağlantı (tight-coupling) yarattığı için ne pahasına
-olursa olsun kaçınılmalıdır. Bloc'lar iş mantığı mimari katmanında bulunduğundan,
-hiçbir bloc başka bir bloc hakkında bilgi sahibi olmamalıdır.
+olursa olsun kaçınılmalıdır. Bloc'lar iş mantığı mimari katmanında
+bulunduğundan, hiçbir bloc başka bir bloc hakkında bilgi sahibi olmamalıdır.
 
 ![Uygulama Mimari Katmanları](~/assets/architecture/architecture.png)
 
@@ -108,8 +107,8 @@ için bir `BlocListener` kullanabilirsiniz.
 
 <BlocLooseCouplingPresentationSnippet />
 
-Yukarıdaki kod, `SecondBloc`'un `FirstBloc` hakkında bilgi sahibi olma ihtiyacını
-ortadan kaldırır ve gevşek bağlantıyı (loose-coupling) teşvik eder.
+Yukarıdaki kod, `SecondBloc`'un `FirstBloc` hakkında bilgi sahibi olma
+ihtiyacını ortadan kaldırır ve gevşek bağlantıyı (loose-coupling) teşvik eder.
 [flutter_weather](/tr/tutorials/flutter-weather) uygulaması, alınan hava durumu
 bilgilerine göre uygulamanın temasını değiştirmek için
 [bu tekniği kullanır](https://github.com/felangel/bloc/blob/b4c8db938ad71a6b60d4a641ec357905095c3965/examples/flutter_weather/lib/weather/view/weather_page.dart#L38-L42).
@@ -121,9 +120,9 @@ değiştiğinde güncellenmesi çoğu zaman daha mantıklı olabilir.
 #### Bloc'ları Alan (Domain) Üzerinden Bağlama
 
 İki bloc, bir repository'den gelen bir stream'i dinleyebilir ve repository
-verisi her değiştiğinde birbirinden bağımsız olarak durumlarını
-güncelleyebilir. Durumu senkronize tutmak için reaktif repository'ler kullanmak,
-büyük ölçekli kurumsal uygulamalarda yaygındır.
+verisi her değiştiğinde birbirinden bağımsız olarak durumlarını güncelleyebilir.
+Durumu senkronize tutmak için reaktif repository'ler kullanmak, büyük ölçekli
+kurumsal uygulamalarda yaygındır.
 
 Önce, bir veri `Stream`'i sağlayan bir repository oluşturun veya kullanın.
 Örneğin, aşağıdaki repository aynı birkaç uygulama fikrinin sonu gelmeyen bir
